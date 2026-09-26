@@ -241,7 +241,7 @@ falsification condition* rather than being written as a wish list:
 ```bibtex
 @misc{foundations2026,
   title        = {Foundations: An Introductory Tutorial and Two Technical-Background Surveys},
-  author       = {ManfredCh},
+  author       = {Mingjun Cheng},
   year         = {2026},
   version      = {v0.2.0},
   howpublished = {\url{https://github.com/ManfredCh/ai-security-foundations}},
@@ -250,7 +250,7 @@ falsification condition* rather than being written as a wish list:
 ```
 
 If you cite one background survey rather than the collection, use its own title with the file path
-as the locator. **Replace the `author` field before publishing.**
+as the locator. The author field is filled in: `Mingjun Cheng` (Vorynel Co.td), matching the PDF title page.
 
 ## Contributing
 
