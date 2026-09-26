@@ -250,7 +250,7 @@ falsification condition* rather than being written as a wish list:
 ```
 
 If you cite one background survey rather than the collection, use its own title with the file path
-as the locator. The author field is filled in: `Mingjun Cheng` (Vorynel Co.td), matching the PDF title page.
+as the locator. The author field is filled in: `Mingjun Cheng` (Vorynel Co.,Ltd), matching the PDF title page.
 
 ## Contributing
 
