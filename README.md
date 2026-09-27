@@ -106,6 +106,33 @@ Each item ships as Markdown (read on Git) and PDF (download; figures inline).
 | Length | ~3 hours · 21 chapters |
 | Structure | evidence method → formalisation → technical lineage → taxonomy → explicit probabilistic and latent families → adversarial implicit generation → autoregressive and token generation → score-based denoising → latent diffusion and DiT → deterministic transport → hybrid mechanisms → conditioning, control, editing → video-specific problems → data and evaluation → engineering and reproduction → safety, copyright, provenance → industry ecosystem → synthesis → agenda → limitations |
 
+1. [Abstract](release/en/Visual-Generative-Models.md#abstract)
+2. [Chapter 1 Introduction: Why a Unified Image–Video Technical Lineage Is Needed](release/en/Visual-Generative-Models.md#chapter-1-introduction-why-a-unified-imagevideo-technical-lineage-is-needed)
+3. [Chapter 2 Evidence Method: Retrieval, Screening, Versions, Coding, and News Verification](release/en/Visual-Generative-Models.md#chapter-2-evidence-method-retrieval-screening-versions-coding-and-news-verification)
+4. [Chapter 3 Formalization and Shared Interface](release/en/Visual-Generative-Models.md#chapter-3-formalization-and-shared-interface)
+5. [Chapter 4 Technical Lineage: From Single-Frame Distributions to the Spatiotemporal World](release/en/Visual-Generative-Models.md#chapter-4-technical-lineage-from-single-frame-distributions-to-the-spatiotemporal-world)
+6. [Chapter 5 Taxonomy Design and Coverage Audit](release/en/Visual-Generative-Models.md#chapter-5-taxonomy-design-and-coverage-audit)
+7. [Chapter 6 Explicit Probability and Latent Variable Families](release/en/Visual-Generative-Models.md#chapter-6-explicit-probability-and-latent-variable-families)
+8. [Chapter 7 The adversarial implicit generation family](release/en/Visual-Generative-Models.md#chapter-7-the-adversarial-implicit-generation-family)
+9. [Chapter 8 The Autoregressive and Token-Generation Family](release/en/Visual-Generative-Models.md#chapter-8-the-autoregressive-and-token-generation-family)
+10. [Chapter 9 Score and Stochastic Denoising Family](release/en/Visual-Generative-Models.md#chapter-9-score-and-stochastic-denoising-family)
+11. [Chapter 10 Latent Diffusion, DiT, and Scaled Visual Generation](release/en/Visual-Generative-Models.md#chapter-10-latent-diffusion-dit-and-scaled-visual-generation)
+12. [Chapter 11 Deterministic Transport: Flow Matching, Rectified Flow, and Few-Step Generation](release/en/Visual-Generative-Models.md#chapter-11-deterministic-transport-flow-matching-rectified-flow-and-few-step-generation)
+13. [Chapter 12 Hybrid and Unified Generation Mechanisms](release/en/Visual-Generative-Models.md#chapter-12-hybrid-and-unified-generation-mechanisms)
+14. [Chapter 13 Conditions, Control, Editing, and Personalization Side Branches](release/en/Visual-Generative-Models.md#chapter-13-conditions-control-editing-and-personalization-side-branches)
+15. [Chapter 14 Video-Specific Issues: Time, Motion, Long-Range State, and Interaction](release/en/Visual-Generative-Models.md#chapter-14-video-specific-issues-time-motion-long-range-state-and-interaction)
+16. [Chapter 15: Data, Evaluation, and Evidence Comparability](release/en/Visual-Generative-Models.md#chapter-15-data-evaluation-and-evidence-comparability)
+17. [Chapter 16 Engineering Systems, Efficiency, and Reproduction Audit](release/en/Visual-Generative-Models.md#chapter-16-engineering-systems-efficiency-and-reproduction-audit)
+18. [Chapter 17 Safety, Copyright, Provenance, and Social Impact](release/en/Visual-Generative-Models.md#chapter-17-safety-copyright-provenance-and-social-impact)
+19. [Chapter 18 Industry, Open-Source Ecosystem, and News Timeline](release/en/Visual-Generative-Models.md#chapter-18-industry-open-source-ecosystem-and-news-timeline)
+20. [Chapter 19 Cross-Family Synthesis and Conditional Selection Guide](release/en/Visual-Generative-Models.md#chapter-19-cross-family-synthesis-and-conditional-selection-guide)
+21. [Chapter 20 Future Trends and a Falsifiable Research Agenda](release/en/Visual-Generative-Models.md#chapter-20-future-trends-and-a-falsifiable-research-agenda)
+22. [Chapter 21 Limitations and Conclusion](release/en/Visual-Generative-Models.md#chapter-21-limitations-and-conclusion)
+23. [A.1 — Movement on the visual-generative-models agenda](release/en/Visual-Generative-Models.md#a1--movement-on-the-visual-generative-models-agenda)
+24. [A.2 — A note on the 3D spatial construction agenda](release/en/Visual-Generative-Models.md#a2--a-note-on-the-3d-spatial-construction-agenda)
+25. [A.3 — Institutional consequence of the OpenAI–Hugging Face incident (cross-repository note)](release/en/Visual-Generative-Models.md#a3--institutional-consequence-of-the-openaihugging-face-incident-cross-repository-note)
+26. [A.4 — How to use this appendix](release/en/Visual-Generative-Models.md#a4--how-to-use-this-appendix)
+
 - [ ] **Technical Lineage** first — establish the timeline
 - [ ] Two or three family chapters that interest you
 - [ ] **Video-Specific Problems** — time, motion, long-horizon state, interaction
@@ -122,6 +149,23 @@ Each item ships as Markdown (read on Git) and PDF (download; figures inline).
 | English | [3D-Spatial-Construction.md](release/en/3D-Spatial-Construction.md) · [120 pp.](release/en/3D-Spatial-Construction.pdf) |
 | Length | ~4 hours |
 | Structure | the L0–L5 capability loop: video generation and action-conditioned frame worlds → NeRF, neural rendering and 3DGS → cameras, depth, point maps, point clouds → explicit surfaces, meshes, procedural DCC/CAD → collision navigation and game engines; plus corpus method, synthesis, datasets and evaluation, applications, and limitations |
+
+1. [Abstract](release/en/3D-Spatial-Construction.md#abstract)
+2. [Introduction](release/en/3D-Spatial-Construction.md#introduction)
+3. [Corpus Selection and Coding Method](release/en/3D-Spatial-Construction.md#corpus-selection-and-coding-method)
+4. [Background and the Input--Output Contract](release/en/3D-Spatial-Construction.md#background-and-the-input--output-contract)
+5. [Classification Design and Coverage Audit](release/en/3D-Spatial-Construction.md#classification-design-and-coverage-audit)
+6. [L0--L5 Method Families](release/en/3D-Spatial-Construction.md#l0--l5-method-families)
+7. [Cross-Family Synthesis and Selection Guide](release/en/3D-Spatial-Construction.md#cross-family-synthesis-and-selection-guide)
+8. [Datasets, Metrics, and Evaluation Evidence](release/en/3D-Spatial-Construction.md#datasets-metrics-and-evaluation-evidence)
+9. [Applications and Deployment Mapping](release/en/3D-Spatial-Construction.md#applications-and-deployment-mapping)
+10. [Attacks, Defenses, Future Trends, and Limitations](release/en/3D-Spatial-Construction.md#attacks-defenses-future-trends-and-limitations)
+11. [Conclusion](release/en/3D-Spatial-Construction.md#conclusion)
+12. [Open Materials and Migration Audit](release/en/3D-Spatial-Construction.md#open-materials-and-migration-audit)
+13. [A.1 — 3D spatial construction: no substantive progress on the agenda](release/en/3D-Spatial-Construction.md#a1--3d-spatial-construction-no-substantive-progress-on-the-agenda)
+14. [A.2 — Related movement](release/en/3D-Spatial-Construction.md#a2--related-movement)
+15. [A.3 — Cross-repository note: institutional consequence of the OpenAI–Hugging Face incident](release/en/3D-Spatial-Construction.md#a3--cross-repository-note-institutional-consequence-of-the-openaihugging-face-incident)
+16. [A.4 — How to use this appendix](release/en/3D-Spatial-Construction.md#a4--how-to-use-this-appendix)
 
 - [ ] **Background and the Input–Output Contract** — conditioning, estimation, representation, assetisation
 - [ ] **L0–L5 Method Families** (more than half the survey; skip around)
