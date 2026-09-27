@@ -6,12 +6,10 @@ Argumentative move: separate local algorithmic cost from end-to-end system KPIs,
 
 A training system must pin the data version, the distributed topology, the mixed-precision setting, the checkpoints and the configuration identity. An inference system must record text encoding, sampler, denoiser, codec, caching, quantization, compilation, transfer, cold start, queueing and failure retries. NFE, FLOPs, parameter count and single-kernel multipliers are not end-to-end p50/p95, throughput, energy or cost.
 
-**System components grouped by type. Author-reported efficiency figures are not rewritten into same-hardware measurements.}
+**System components grouped by type. Author-reported efficiency figures are not rewritten into same-hardware measurements.**
 
-|
 Component type | Number of records | Examples |
 |---|---|---|
-|
 open_weight_model | 10 | Stable Diffusion XL Base 1.0, FLUX.1-schnell, Stable Diffusion 3.5 Large Turbo |
 | cache | 5 | DeepCache, FasterCache, TeaCache |
 | closed_service | 5 | Sora Turbo, Sora 2, Veo 3.1 |

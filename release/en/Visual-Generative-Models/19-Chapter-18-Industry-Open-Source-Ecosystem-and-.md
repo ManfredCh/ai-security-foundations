@@ -6,12 +6,10 @@ Argumentative move: record occurrence, announcement and reporting dates separate
 
 The unit of an event stays "event—official version—occurrence date—evidence type." A publication date may fall later than the actual occurrence. Independent reporting may confirm external impact alone. None of the three can substitute for another. Official pages can verify specifications and terms. They cannot independently prove market effects, training architecture or comparative performance.
 
-**Events summarized by type. Occurrence counts are not adoption rates, impact rates or causal evidence.}
+**Events summarized by type. Occurrence counts are not adoption rates, impact rates or causal evidence.**
 
-|
 Event type | Records | Examples |
 |---|---|---|
-|
 product_release | 9 | Sora Turbo released to subscription users, Sora 2 released with a social app launch, GPT-4o native image generation launched |
 | open_release | 4 | Wan2.1 code and weights released, Wan2.2 code and weights released, Stable Diffusion 3.5 series openly released |
 | policy_effective | 3 | China's Measures for Labeling AI-Generated Synthetic Content take effect, the AB 2013 training-data disclosure deadline arrives, the EU AI Act Article 50 transparency obligations begin to apply |

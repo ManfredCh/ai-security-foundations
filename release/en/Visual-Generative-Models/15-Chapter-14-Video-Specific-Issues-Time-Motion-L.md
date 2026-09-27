@@ -31,10 +31,8 @@ Action-conditioned and interactive systems must also distinguish visual predicti
 
 **Distribution of video structured cards by primary family, with examples. Video capabilities still require time and action fields.}
 
-|
 Primary family | Card count | Example |
 |---|---|---|
-|
 Score-based and stochastic denoising | 28 | Video Diffusion Models, Flexible Diffusion Modeling of Long Videos, Make-A-Video: Text-to-Video Generation without Text-Video Data |
 | Deterministic transport | 11 | Movie Gen: A Cast of Media Foundation Models, HunyuanVideo: A Systematic Framework For Large Video Generative Models, Pyramidal Flow Matching for Efficient Video Generative Modeling |
 | Hybrid and unified generation mechanisms | 9 | GAIA-1: A Generative World Model for Autonomous Driving, From Slow Bidirectional to Fast Autoregressive Video Diffusion Models, Generative Pre-trained Autoregressive Diffusion Transformer |

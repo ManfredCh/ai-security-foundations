@@ -8,10 +8,8 @@ Training and evaluation data must record independent-media denominators, derived
 
 **Data records summarized by modality. Scale, licensing and derivation relations must be traced row by row back to the data table.}
 
-|
 Modality | Record count | Example |
 |---|---|---|
-|
 video | 12 | WebVid-10M, HD-VILA-100M, InternVid-10M-FLT |
 | image | 11 | MS COCO, Conceptual Captions, FFHQ |
 | | | |
@@ -20,10 +18,8 @@ FID and KID measure feature distributions. CLIP-style scores measure text-image 
 
 **Metrics summarized by measurement target. Metrics with the same name are comparable only when implementation and protocol agree.}
 
-|
 Measurement target | Record count | Example |
 |---|---|---|
-|
 MMD between generated and reference Inception features | 1 | KID |
 | attribute binding; object interaction; motion binding; spatial and temporal composition | 1 | T2V-CompBench vector |
 | completed outputs per time | 1 | throughput |
@@ -51,10 +47,8 @@ MMD between generated and reference Inception features | 1 | KID |
 
 **Minimal contract for cross-study comparability. Any drift in a key field should trigger grouping or refusal of comparison.}
 
-|
 Contract layer | Must be fixed | If not met |
 |---|---|---|
-|
 Task and input | task, conditions, prompt set, source media | describe as heterogeneous sources only |
 | Output | resolution, frame count, frame rate, duration, format | do not compare quality or efficiency |
 | Sampling | steps, solver, guidance, random seed | do not attribute to the model itself |

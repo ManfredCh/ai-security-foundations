@@ -12,12 +12,10 @@ Personalization started with the input embedding of Textual Inversion. It then r
 
 Visual text methods explicitly add layout, glyph, OCR representations, or more detailed captions. That shows data and codecs are algorithmic variables as well. Reliable text needs a joint contract spanning character-level data, spatial constraints, VAE reconstruction, OCR, and human evaluation. Misspellings, missing words, and overlaps cannot be masked by overall CLIP similarity. [@textdiffuser; @glyphdraw; @glyphcontrol; @anytext; @dalle3]
 
-**Structured distribution of side-branch clusters such as control, editing, and personalization.}
+**Structured distribution of side-branch clusters such as control, editing, and personalization.**
 
-|
 Side-branch cluster | Record count | Examples |
 |---|---|---|
-|
 temporal | 19 | Generating Videos with Scene Dynamics, Temporal Generative Adversarial Nets with Singular Value Clipping, MoCoGAN: Decomposing Motion and Content for Video Generation |
 | control | 11 | Adding Conditional Control to Text-to-Image Diffusion Models, T2I-Adapter: Learning Adapters to Dig out More Controllable Ability for Text-to-Image Diffusion Models, GLIGEN: Open-Set Grounded Text-to-Image Generation |
 | editing | 11 | A Style-Based Generator Architecture for Generative Adversarial Networks, Analyzing and Improving the Image Quality of StyleGAN, Alias-Free Generative Adversarial Networks |

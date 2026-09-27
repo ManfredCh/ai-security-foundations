@@ -4,7 +4,7 @@
 
 **安全工作的下一层：这些系统是怎么造出来的，而不是怎么被攻击。**
 
-<sub>2 篇背景综述 + 1 份教程目录 · 9.8 万汉字 · 116 页 PDF</sub>
+<sub>2 篇背景综述 + 1 份教程目录 · 9.8 万汉字 · 115 页 PDF</sub>
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)  ·  [![Status](https://img.shields.io/badge/Status-compiled_draft-orange)](#状态与边界)  ·  [![Language](https://img.shields.io/badge/Language-English_%7C_%E4%B8%AD%E6%96%87-blue)](#语言与版本)
 
@@ -98,8 +98,8 @@
 
 | | |
 |---|---|
-| 中文 | [从图像到视频.md](release/zh/从图像到视频/index.md) · [69 页](release/zh/从图像到视频.pdf) |
-| English | [Visual-Generative-Models.md](release/en/Visual-Generative-Models/index.md) · [86 页](release/en/Visual-Generative-Models.pdf) |
+| 中文 | [从图像到视频.md](release/zh/从图像到视频/index.md) · [68 页](release/zh/从图像到视频.pdf) |
+| English | [Visual-Generative-Models.md](release/en/Visual-Generative-Models/index.md) · [85 页](release/en/Visual-Generative-Models.pdf) |
 | 篇幅 | 约 3 小时 · 21 章 |
 | 结构 | 证据方法 → 形式化 → 技术发展脉络 → 分类设计 → 显式概率与潜变量 → 对抗式隐式生成 → 自回归与 token → 得分去噪 → 潜扩散与 DiT → 确定性输运 → 混合机制 → 条件/控制/编辑 → 视频专属问题 → 数据与评测 → 工程与复现 → 安全版权与来源 → 产业生态 → 跨家族综合 → 未来议程 → 局限 |
 

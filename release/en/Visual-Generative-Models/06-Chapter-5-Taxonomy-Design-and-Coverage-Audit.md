@@ -14,10 +14,8 @@ Roles and families are orthogonal. The post-correction role distribution is: bra
 
 **Post-correction single-axis family coding and representative works; the counts describe only the 132 structured cards.
 
-|
 Mechanism family | Cards | Representative work_id |
 |---|---|---|
-|
 Explicit probability and latent variable/invertible flow [@vae; @glow] | 5 | WIMG0001, WIMG0007 |
 | Adversarial implicit generation [@gan; @stylegan] | 13 | WIMG0002, WIMG0010 |
 | Autoregressive and masked generation [@pixelrnn; @maskgit; @video_2104_10157] | 18 | WIMG0014, WIMG0020, VID-W005 |
@@ -28,10 +26,8 @@ Explicit probability and latent variable/invertible flow [@vae; @glow] | 5 | WIM
 
 **Post-correction paper role distribution; roles are orthogonal to the primary family.
 
-|
 Role | Cards |
 |---|---|
-|
 branch | 32 |
 | bridge | 21 |
 | core | 74 |

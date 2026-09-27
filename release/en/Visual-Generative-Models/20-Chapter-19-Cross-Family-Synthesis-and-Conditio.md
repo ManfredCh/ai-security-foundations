@@ -4,12 +4,10 @@ Input and question: the chapter covers unified fields across the six families, t
 
 Argumentative move: the task and its hard constraints come first. They decide which combination of mechanisms has to be audited. The next step lists the fields that must be measured and the conditions that would flip the recommendation.
 
-**Unified comparison contract for methods. The table contains no cross-protocol numerical values or overall ranking.}
+**Unified comparison contract for methods. The table contains no cross-protocol numerical values or overall ranking.**
 
-|
 Family | State update | Training objective | Inference | Key failure |
 |---|---|---|---|---|
-|
 Explicit probability and latent variable/invertible flow | Latent samples or invertible mapping | ELBO or exact likelihood | Single-pass decoding or inverse transform | Posterior/invertible structure and perceptual mismatch |
 | Adversarial implicit generation | Implicit mapping constrained by a discriminative game | Minimax or IPM objective | Single forward pass of the generator | Coverage, training stability, and conditional extension |
 | Autoregressive and masked generation | Conditional updates over token/pixel/frame/scale | Conditional likelihood or masked reconstruction | Serial or parallel iteration | codec ceiling, serial depth, and accumulated error |

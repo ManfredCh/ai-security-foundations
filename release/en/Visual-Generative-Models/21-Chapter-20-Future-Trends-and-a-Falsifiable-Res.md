@@ -4,12 +4,10 @@ Input and question: the chapter starts from earlier failures, blank cells in tab
 
 Argument move: run each trend through "observation---gap---falsifiable question---minimum verification---falsification condition." Reject wish lists.
 
-**Falsifiable questions and falsification conditions for future trends.}
+**Falsifiable questions and falsification conditions for future trends.**
 
-|
 Section | Topic | Falsifiable question | Falsification condition |
 |---|---|---|---|
-|
 20.1 | Native multimodal understanding--generation unification | Under the same data, same parameters, same tokenizer, and same training budget, can a shared model on understanding, image generation, video generation, and editing reach specialized model… | The advantage comes only from a larger budget, or the shared model consistently degrades on any core task. |
 | 20.2 | Long-horizon state, editable memory, and identity/scene persistence | Under the same generator, data, token, and compute budget, does explicit object/scene memory continuously reduce revisit errors compared with an equally long pixel context and allow local… | Explicit memory is no better than an equal-budget pixel context, or edit propagation systematically corrupts unedited state. |
 | 20.3 | Physics, causality, 3D/4D, and interactive closed loops | Do explicit 3D/physical states, in out-of-distribution actions and long-horizon closed loops, significantly improve predictability and task success over pixel history while not excessively sacrificing rendering quality and… | Improvements appear only in in-training visual metrics, and physical residuals or closed-loop planning do not improve. |

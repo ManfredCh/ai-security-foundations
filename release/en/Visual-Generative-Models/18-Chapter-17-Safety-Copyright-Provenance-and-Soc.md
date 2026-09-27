@@ -10,12 +10,10 @@ At the model layer the risks are memorization and near-duplication, privacy leak
 
 Provenance work must separate signed content credentials, robust watermarks, detectors, service logs and platform labels. A missing credential is not proof that a human created the content. A watermark hit does not prove lawful training. Nor does publishing a standard prove the retention rate across editors, transcoding and platform transmission.
 
-**Risk controls summarized by control layer; the existence of a control does not equal effective enforcement.}
+**Risk controls summarized by control layer; the existence of a control does not equal effective enforcement.**
 
-|
 Control layer | Record count | Risk examples |
 |---|---|---|
-|
 evaluation_governance | 3 | metric drift or invalid cross-paper ranking, judge bias or capability bottleneck misattributed to generator, distribution shift, population bias and reward hacking produce inflated apparent quality |
 | data_governance | 2 | copyrighted material included without adequate provenance or licensing basis, privacy and biometric misuse |
 | provenance | 2 | C2PA manifest stripped so provenance becomes unavailable, contradictory authenticated signals or metadata washing |

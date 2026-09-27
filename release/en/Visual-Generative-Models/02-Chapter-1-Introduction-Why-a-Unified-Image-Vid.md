@@ -10,12 +10,10 @@ The primary time window runs from 2014-01-01 to 2026-08-09. Before 2014 we trace
 
 A core work must satisfy at least two of the preset A–E criteria. At least one of those two must be an objective/representation, a shared interface, or a cross-route bridge. A branch work must connect to the core or to a shared bottleneck. It must also present a different mechanism or failure in control, editing, personalization, long-horizon, efficiency, evaluation or governance. Citation counts, company prominence and self-reported claims to primacy cannot by themselves determine role.
 
-**Scope and auditable gaps of existing surveys; only full texts that have been checked are described.}
+**Scope and auditable gaps of existing surveys; only full texts that have been checked are described.**
 
-|
 Survey | Scope | Search audit | Gaps observed in this survey |
 |---|---|---|---|
-|
 Image Generation Models: A Technical Hist… [@src_s_arxiv_2603_07455] | Technical history of image generation, including chapters on video and safety | not_reported | No reproducible database queries, inclusion/exclusion, version or evidence ledger found. The survey is image-centric, and video, control, systems and news do not sit under one unified contract |
 | Bridging Text and Video Generation: A Sur… [@src_s_arxiv_2510_04999] | Text-to-video models, data, training configurations and evaluation | not_reported | No reproducible search/screening method found. No single cross-image–video axis is formed, and coverage of AR/token, DiT/flow and governance/news is limited |
 | | | | |
