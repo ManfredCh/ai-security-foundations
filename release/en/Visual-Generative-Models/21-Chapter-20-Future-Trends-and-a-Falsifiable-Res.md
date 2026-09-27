@@ -6,21 +6,6 @@ Argument move: run each trend through "observation---gap---falsifiable question-
 
 **Falsifiable questions and falsification conditions for future trends.}
 
-\begin{tabular}{llll}
-
-Section & Topic & Falsifiable question & Falsification condition \\
-
-20.1 & Native multimodal understanding--generation unification & Under the same data, same parameters, same tokenizer, and same training budget, can a shared model on understanding, image generation, video generation, and editing reach specialized model… & The advantage comes only from a larger budget, or the shared model consistently degrades on any core task. \\
-20.2 & Long-horizon state, editable memory, and identity/scene persistence & Under the same generator, data, token, and compute budget, does explicit object/scene memory continuously reduce revisit errors compared with an equally long pixel context and allow local… & Explicit memory is no better than an equal-budget pixel context, or edit propagation systematically corrupts unedited state. \\
-20.3 & Physics, causality, 3D/4D, and interactive closed loops & Do explicit 3D/physical states, in out-of-distribution actions and long-horizon closed loops, significantly improve predictability and task success over pixel history while not excessively sacrificing rendering quality and… & Improvements appear only in in-training visual metrics, and physical residuals or closed-loop planning do not improve. \\
-20.4 & Data bottlenecks, synthetic feedback, and the licensed-data economy & With fixed independent sources and compute, how do licensed human descriptions, machine re-descriptions, and multi-round synthetic mixtures each change semantics, tail coverage, memory, bias, and rights auditability… & Gains hold only for evaluators from the same source as the generative teacher, or tail coverage continues to shrink as the number of synthetic rounds increases. \\
-20.5 & Real-time on-device/edge generation, sparse experts, and codec co-design & Can sparse/expert routing, few-step sampling, and codec co-design improve the end-to-end Pareto frontier at fixed quality, rather than shifting the bottleneck or distortion to other components? & NFE or FLOPs decrease but the end-to-end frontier does not move, or the tail failure rate increases significantly. \\
-20.6 & Verifiable provenance, behavior audit, and governance infrastructure & Can a combination of signed credentials, robust watermarking, service logs, and platform policies increase the provenance verifiability rate under known/unknown transformations, malicious stripping, and multi-platform forwarding, while control… & The combined control is no better than the strongest single layer, or absence is still systematically misjudged as non-AI. \\
-
-\end{tabular}
-
-\end{table**
-
 |
 Section | Topic | Falsifiable question | Falsification condition |
 |---|---|---|---|

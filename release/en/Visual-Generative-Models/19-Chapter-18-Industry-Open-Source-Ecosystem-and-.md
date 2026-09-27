@@ -8,33 +8,6 @@ The unit of an event stays "event—official version—occurrence date—evidenc
 
 **Events summarized by type. Occurrence counts are not adoption rates, impact rates or causal evidence.}
 
-\begin{tabular}{lcl}
-
-Event type & Records & Examples \\
-
-product_release & 9 & Sora Turbo released to subscription users, Sora 2 released with a social app launch, GPT-4o native image generation launched \\
-open_release & 4 & Wan2.1 code and weights released, Wan2.2 code and weights released, Stable Diffusion 3.5 series openly released \\
-policy_effective & 3 & China's Measures for Labeling AI-Generated Synthetic Content take effect, the AB 2013 training-data disclosure deadline arrives, the EU AI Act Article 50 transparency obligations begin to apply \\
-policy_guidance & 2 & EU publishes a code of practice on marking and labeling AI-generated content, EU publishes Article 50 transparency guidelines \\
-policy_report & 2 & U.S. Copyright Office publishes the copyrightability of AI outputs report Part 2, U.S. Copyright Office publishes the generative AI training report Part 3 pre-publication version \\
-technical_release & 2 & Movie Gen technical report made public, Seedance 1.0 technical report made public \\
-abuse_incident & 1 & Non-consensual synthetic intimate images spread at scale on X \\
-availability_change & 1 & Sora web and app services discontinued \\
-copyright_dispute & 1 & Seedance 2.0 triggers a Hollywood copyright dispute \\
-copyright_judgment & 1 & UK High Court Getty v Stability AI judgment issued \\
-copyright_litigation & 1 & Disney and Universal sue Midjourney \\
-fraud_incident & 1 & Hong Kong deepfake video-conference transfer fraud reported \\
-incident_and_availability & 1 & LAION-5B temporarily taken offline for safety review \\
-policy_enactment & 1 & California AB 2013 signed by the governor \\
-policy_publication & 1 & China's Measures for Labeling AI-Generated Synthetic Content published \\
-product_update & 1 & Veo 3.1 adds vertical and high-definition output paths \\
-remediation_release & 1 & Re-LAION-5B released with known problematic hashes removed \\
-standard_release & 1 & C2PA 2.4 specification released \\
-
-\end{tabular}
-
-\end{table**
-
 |
 Event type | Records | Examples |
 |---|---|---|

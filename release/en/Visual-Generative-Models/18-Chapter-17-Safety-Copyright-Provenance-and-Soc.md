@@ -12,32 +12,6 @@ Provenance work must separate signed content credentials, robust watermarks, det
 
 **Risk controls summarized by control layer; the existence of a control does not equal effective enforcement.}
 
-\begin{tabular}{lcl}
-
-Control layer & Record count & Risk examples \\
-
-evaluation_governance & 3 & metric drift or invalid cross-paper ranking, judge bias or capability bottleneck misattributed to generator, distribution shift, population bias and reward hacking produce inflated apparent quality \\
-data_governance & 2 & copyrighted material included without adequate provenance or licensing basis, privacy and biometric misuse \\
-provenance & 2 & C2PA manifest stripped so provenance becomes unavailable, contradictory authenticated signals or metadata washing \\
-compliance & 1 & noncompliance or misleading disclosure across generation and distribution chain \\
-content_safety & 1 & non-consensual sexual imagery, impersonation, harassment \\
-data_quality & 1 & hallucinated captions, demographic bias, unsafe omissions and teacher-model imprint \\
-data_safety & 1 & CSAM/CSEM or other illegal harmful content enters index and training \\
-human_study & 1 & position bias, rater fatigue, cultural bias, non-transitive preferences \\
-legal_governance & 1 & lawsuit allegations or judgment over training, output similarity, trademark and territorial acts \\
-organizational_security & 1 & deepfake identity used to authorize high-value transfer \\
-platform_governance & 1 & upstream markers missing, stripped or misread; user does not disclose \\
-release_governance & 1 & license misunderstood as unrestricted open source or commercial permission \\
-reporting & 1 & quality dimensions and minority failure modes are hidden \\
-reproducibility & 1 & current files differ from cited or tested version \\
-runtime_control & 1 & motion, identity, text or detail drift from stale features \\
-systems_evaluation & 1 & headline speedup fails under real workload or loses quality \\
-watermark & 1 & false negative after transformation or unsupported generator; false positive near threshold \\
-
-\end{tabular}
-
-\end{table**
-
 |
 Control layer | Record count | Risk examples |
 |---|---|---|

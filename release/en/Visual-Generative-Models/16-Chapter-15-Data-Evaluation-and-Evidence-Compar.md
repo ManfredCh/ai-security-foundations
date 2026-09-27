@@ -8,17 +8,6 @@ Training and evaluation data must record independent-media denominators, derived
 
 **Data records summarized by modality. Scale, licensing and derivation relations must be traced row by row back to the data table.}
 
-\begin{tabular}{lcl}
-
-Modality & Record count & Example \\
-
-video & 12 & WebVid-10M, HD-VILA-100M, InternVid-10M-FLT \\
-image & 11 & MS COCO, Conceptual Captions, FFHQ \\
-
-\end{tabular}
-
-\end{table**
-
 |
 Modality | Record count | Example |
 |---|---|---|
@@ -30,38 +19,6 @@ video | 12 | WebVid-10M, HD-VILA-100M, InternVid-10M-FLT |
 FID and KID measure feature distributions. CLIP-style scores measure text-image representation similarity. FVD extends the same measurement to video features. Human evaluation and preference models measure judgments under specific questions. Each of them misses composition, text, temporal order, physics, identity, tail failures or rater bias. No single score can replace any of them.
 
 **Metrics summarized by measurement target. Metrics with the same name are comparable only when implementation and protocol agree.}
-
-\begin{tabular}{lcl}
-
-Measurement target & Record count & Example \\
-
-MMD between generated and reference Inception features & 1 & KID \\
-attribute binding; object interaction; motion binding; spatial and temporal composition & 1 & T2V-CompBench vector \\
-completed outputs per time & 1 & throughput \\
-compliance with named physical laws & 1 & PhyGenBench physical score \\
-criterion-specific perceived quality & 1 & absolute human rating \\
-energy cost after quality and success gating & 1 & energy_per_accepted_output \\
-fine-grained human-like quality dimensions & 1 & VideoScore \\
-generated/reference feature-distribution distance & 1 & FID \\
-generated/reference spatiotemporal feature-distribution distance & 1 & FVD \\
-image-text semantic compatibility & 1 & CLIPScore \\
-learned expert preference for a prompt-image pair & 1 & ImageReward \\
-learned human preference prediction and four-style benchmark performance & 1 & HPS_v2 \\
-learned prediction of real-user preference conditional on a prompt & 1 & PickScore \\
-maximum accelerator memory used & 1 & peak_memory \\
-object presence; co-occurrence; count; color; position; color attribution & 1 & GenEval score \\
-open-world compositional prompt adherence & 1 & T2I-CompBench vector \\
-physical commonsense and plausibility & 1 & VideoPhy score \\
-question-answer faithfulness to prompt facts & 1 & TIFA score \\
-relative preference under a named criterion & 1 & pairwise human preference \\
-scientific relevance; factual accuracy; explainability & 1 & SCIEval vector \\
-video quality and semantic dimensions & 1 & VBench dimension vector \\
-visual quality; motion; temporal coherence; text-video alignment & 1 & EvalCrafter metric vector \\
-wall-clock request completion & 1 & end_to_end_latency \\
-
-\end{tabular}
-
-\end{table**
 
 |
 Measurement target | Record count | Example |
@@ -93,21 +50,6 @@ MMD between generated and reference Inception features | 1 | KID |
 | | | |
 
 **Minimal contract for cross-study comparability. Any drift in a key field should trigger grouping or refusal of comparison.}
-
-\begin{tabular}{lll}
-
-Contract layer & Must be fixed & If not met \\
-
-Task and input & task, conditions, prompt set, source media & describe as heterogeneous sources only \\
-Output & resolution, frame count, frame rate, duration, format & do not compare quality or efficiency \\
-Sampling & steps, solver, guidance, random seed & do not attribute to the model itself \\
-Evaluation & implementation, feature extractor, reference set, sample count, human-evaluation questions & do not merge scores \\
-System & hardware, precision, batch, compilation, cold start, load & do not compare latency and throughput \\
-Statistics & independent units, replications, variance, missingness and failures & refuse meta-analysis or significance \\
-
-\end{tabular}
-
-\end{table**
 
 |
 Contract layer | Must be fixed | If not met |

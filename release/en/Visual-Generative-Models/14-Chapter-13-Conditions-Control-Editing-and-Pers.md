@@ -14,21 +14,6 @@ Visual text methods explicitly add layout, glyph, OCR representations, or more d
 
 **Structured distribution of side-branch clusters such as control, editing, and personalization.}
 
-\begin{tabular}{lcl}
-
-Side-branch cluster & Record count & Examples \\
-
-temporal & 19 & Generating Videos with Scene Dynamics, Temporal Generative Adversarial Nets with Singular Value Clipping, MoCoGAN: Decomposing Motion and Content for Video Generation \\
-control & 11 & Adding Conditional Control to Text-to-Image Diffusion Models, T2I-Adapter: Learning Adapters to Dig out More Controllable Ability for Text-to-Image Diffusion Models, GLIGEN: Open-Set Grounded Text-to-Image Generation \\
-editing & 11 & A Style-Based Generator Architecture for Generative Adversarial Networks, Analyzing and Improving the Image Quality of StyleGAN, Alias-Free Generative Adversarial Networks \\
-personalization & 7 & An Image is Worth One Word: Personalizing Text-to-Image Generation using Textual Inversion, DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation, Multi-Concept Customization of Text-to-Image Diffusion \\
-audio-video & 3 & MM-Diffusion: Learning Multi-Modal Diffusion Models for Joint Audio and Video Generation, VideoPoet: A Large Language Model for Zero-Shot Video Generation, Movie Gen: A Cast of Media Foundation Models \\
-text-rendering & 1 & AnyText: Multilingual Visual Text Generation And Editing \\
-
-\end{tabular}
-
-\end{table**
-
 |
 Side-branch cluster | Record count | Examples |
 |---|---|---|

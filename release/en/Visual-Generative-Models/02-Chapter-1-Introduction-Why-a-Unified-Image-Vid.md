@@ -12,17 +12,6 @@ A core work must satisfy at least two of the preset A–E criteria. At least one
 
 **Scope and auditable gaps of existing surveys; only full texts that have been checked are described.}
 
-\begin{tabular}{llll}
-
-Survey & Scope & Search audit & Gaps observed in this survey \\
-
-Image Generation Models: A Technical Hist… [@src_s_arxiv_2603_07455] & Technical history of image generation, including chapters on video and safety & not_reported & No reproducible database queries, inclusion/exclusion, version or evidence ledger found. The survey is image-centric, and video, control, systems and news do not sit under one unified contract \\
-Bridging Text and Video Generation: A Sur… [@src_s_arxiv_2510_04999] & Text-to-video models, data, training configurations and evaluation & not_reported & No reproducible search/screening method found. No single cross-image–video axis is formed, and coverage of AR/token, DiT/flow and governance/news is limited \\
-
-\end{tabular}
-
-\end{table**
-
 |
 Survey | Scope | Search audit | Gaps observed in this survey |
 |---|---|---|---|

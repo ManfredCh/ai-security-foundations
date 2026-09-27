@@ -43,13 +43,13 @@ Learned geometry amortizes the solving experience of many past scenes into netwo
 Therefore the engineering form more likely to stabilize is not “networks completely replacing optimization,” but:
 
 **Text Pipeline or Pseudocode in the Original Manuscript**
-\begin{verbatim}
+```
 The feed-forward model provides initial values for cameras/depth/point maps/confidence
 → geometric verification removes inconsistent observations
 → BA, pose graph, or global alignment corrects cross-view constraints
 → depth / point cloud fusion and surfacing
 → recapture failed regions or keep them as unknown
-\end{verbatim}
+```
 
 The driving force of the evolution here is to turn expensive search into a strong initialization, then let explicit optimization bear the auditable final constraint. Feed-forward speed and optimization interpretability are not an either-or choice.
 

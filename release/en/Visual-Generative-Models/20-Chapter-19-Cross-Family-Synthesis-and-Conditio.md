@@ -6,21 +6,6 @@ Argumentative move: the task and its hard constraints come first. They decide wh
 
 **Unified comparison contract for methods. The table contains no cross-protocol numerical values or overall ranking.}
 
-\begin{tabular}{lllll}
-
-Family & State update & Training objective & Inference & Key failure \\
-
-Explicit probability and latent variable/invertible flow & Latent samples or invertible mapping & ELBO or exact likelihood & Single-pass decoding or inverse transform & Posterior/invertible structure and perceptual mismatch \\
-Adversarial implicit generation & Implicit mapping constrained by a discriminative game & Minimax or IPM objective & Single forward pass of the generator & Coverage, training stability, and conditional extension \\
-Autoregressive and masked generation & Conditional updates over token/pixel/frame/scale & Conditional likelihood or masked reconstruction & Serial or parallel iteration & codec ceiling, serial depth, and accumulated error \\
-Score and stochastic denoising & Noise or score state & Denoising, score, or equivalent parameterization & Reverse chain, SDE, or probability flow ODE & Sampling cost, guidance tradeoff, and codec distortion \\
-Deterministic transport & Velocity field, flow map, or consistency mapping & Conditional flow, rectified path, or endpoint consistency & ODE integration or few-step mapping & Path, solver, and end-to-end gains uncertain \\
-Hybrid and unified generation mechanisms & Two or more non-removable update operators & Joint component objectives and interfaces & Multi-stage or compositional updates & Error propagation, complexity, and attribution difficulty \\
-
-\end{tabular}
-
-\end{table**
-
 |
 Family | State update | Training objective | Inference | Key failure |
 |---|---|---|---|---|

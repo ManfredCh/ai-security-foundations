@@ -8,28 +8,6 @@ A training system must pin the data version, the distributed topology, the mixed
 
 **System components grouped by type. Author-reported efficiency figures are not rewritten into same-hardware measurements.}
 
-\begin{tabular}{lcl}
-
-Component type & Number of records & Examples \\
-
-open_weight_model & 10 & Stable Diffusion XL Base 1.0, FLUX.1-schnell, Stable Diffusion 3.5 Large Turbo \\
-cache & 5 & DeepCache, FasterCache, TeaCache \\
-closed_service & 5 & Sora Turbo, Sora 2, Veo 3.1 \\
-quantization & 5 & Q-Diffusion, Q-DiT, QVD \\
-distillation & 2 & Progressive Distillation, Latent Consistency Models \\
-open_weight_world_model & 2 & Cosmos Predict2, Cosmos 3 \\
-attention_kernel & 1 & SageAttention \\
-inference_engine & 1 & xDiT \\
-model_family & 1 & Consistency Models \\
-open_research_stack & 1 & Open-Sora 2.0 \\
-parallel_inference & 1 & PipeFusion \\
-research_only_closed_model & 1 & Movie Gen \\
-sampler & 1 & DPM-Solver \\
-
-\end{tabular}
-
-\end{table**
-
 |
 Component type | Number of records | Examples |
 |---|---|---|

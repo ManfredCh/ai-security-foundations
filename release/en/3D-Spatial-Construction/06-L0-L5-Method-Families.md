@@ -61,7 +61,7 @@ A practical implementation must also perform z-buffering, frustum culling, and o
 A generic geometry-conditioned video pipeline can be written as the algorithm below. It describes only the structure this method family shares. It does not represent the complete code of any single paper.
 
 **The text pipeline or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 Input: reference images or sparse views, camera parameters, target camera trajectory
 1. Encode the reference images; if explicit geometry is needed, estimate depth and confidence.
 2. Back-project valid RGB-D pixels to world coordinates, keeping the source view and confidence.
@@ -71,7 +71,7 @@ Input: reference images or sparse views, camera parameters, target camera trajec
 6. Filter inconsistent frames using reprojection, cyclic trajectories, and multi-view matching.
 7. Feed only the frames that pass screening into point cloud fusion, 3DGS, or mesh construction.
 Output: generated frames; optional depth, point cloud cache, and a downstream reconstruction representation.
-\end{verbatim}
+```
 
 Failure propagation is also determined by this chain. Pose errors make ray directions wrong. Ray or depth errors misalign the warp. The denoiser will then "fix" the misalignment to look real, and the reconstructor may in turn solidify such visual patching into fake surfaces. Therefore, video metrics, pose re-estimation metrics, and 3D geometry metrics must be reported separately.
 
@@ -175,7 +175,7 @@ ReconX upgrades its output contract to a renderable 3DGS, which can answer appea
 
 VideoScene [@srcD02] attacks the speed bottleneck that appears when video diffusion takes part in three-dimensional reconstruction. Its "one step" refers to the distilled video generation step. It does not refer to obtaining, in one step, an engine asset that has already passed physical validation.
 
-The algorithm first receives two images and a camera. The pose may be given, or estimated by COLMAP or DUSt3R. It then uses a feed-forward sparse-view 3DGS model such as MVSplat to construct a coarse scene. Along the interpolated camera trajectory it renders a structurally consistent but possibly blurry video $X_0^r$. Traditional diffusion starts from pure noise. VideoScene instead encodes the coarse rendering into the latent space and adds noise at an intermediate timestep
+The algorithm first receives two images and a camera. The pose may be given, or estimated by COLMAP or DUSt3R. It then uses a feed-forward sparse-view 3DGS model such as MVSplat to construct a coarse scene. Along the interpolated camera trajectory it renders a structurally consistent but possibly blurry video $X_0^$r$. Traditional diffusion starts from pure noise. VideoScene instead encodes the coarse rendering into the latent space and adds noise at an intermediate timestep
 
 $$
 x_t^r=\alpha_t x_0^r+\sigma_t\epsilon,
@@ -342,16 +342,16 @@ $$
 The original NeRF runs a hierarchical coarse sampling pass, then performs importance resampling according to the coarse network weights. Occupancy grids, hash encodings, and proposal networks appear in later implementations. They are acceleration or parameterization evolutions, and should not be written back as components of the original paper. At runtime the method holds at least a camera/ray batch, sample points, network parameters, spatial bounds, and sampling/acceleration state. The basic procedure is:
 
 **Indented procedure or pseudocode in the original draft**
-\begin{verbatim}
+```
 Generate rays o,d from the pixel and the camera
 → sample t_i between the near and far bounds to obtain x_i=o+t_i d
 → query the network for sigma_i and c_i
 → compute alpha_i, the accumulated transmittance T_i, the composite color, and the expected depth
 → compare with the ground-truth RGB and back-propagate
 → update the network and the optional camera parameters
-\end{verbatim}
+```
 
-NeRF can output color from arbitrary views, plus expected depth and density samples. Density is not a signed distance, however. Provided $\hat C$ is correct, optimization may accept floating density, thick surfaces, or view-dependent color that masks geometric errors. Beyond the sparse views, the function extrapolates color. Choosing a density threshold arbitrarily and running Marching Cubes is another surface estimate: shift the threshold and the shell inflates, splits, or disappears. No natural inside/outside exists. The native NeRF output contract should therefore be written as "radiance field + camera + bounds + sampling/acceleration structure + rendered depth and uncertainty." It must not be written as a "collidable mesh."
+NeRF can output color from arbitrary views, plus expected depth and density samples. Density is not a signed distance, however. Provided $\hat $C$ is correct, optimization may accept floating density, thick surfaces, or view-dependent color that masks geometric errors. Beyond the sparse views, the function extrapolates color. Choosing a density threshold arbitrarily and running Marching Cubes is another surface estimate: shift the threshold and the shell inflates, splits, or disappears. No natural inside/outside exists. The native NeRF output contract should therefore be written as "radiance field + camera + bounds + sampling/acceleration structure + rendered depth and uncertainty." It must not be written as a "collidable mesh."
 
 #### VolSDF and NeuS: Two Different SDF Differentiable Rendering Mechanisms
 
@@ -418,7 +418,7 @@ Viewing direction enters through the spherical harmonics, which let $c_k(d)$ var
 A fixed number of primitives struggles to cover flat regions and high-frequency detail at once. The original method therefore performs adaptive density control at intervals, driven by view-space position gradients and scale. Smaller primitives with high gradients can be cloned. Larger primitives with high gradients can be split into smaller ones. Primitives with low opacity, or an abnormally large size, are pruned, and opacity is periodically reset for redistribution. The mechanism can be written as:
 
 **Indented procedure or pseudocode in the original draft**
-\begin{verbatim}
+```
 Initialize Gaussian(mu, scale, rotation, opacity, SH) from SfM points
 for each iteration:
 frustum cull and assign to tiles
@@ -430,7 +430,7 @@ at densification steps:
 clone small primitives with high gradients
 split large primitives with high gradients
 prune low-opacity or pathologically large primitives
-\end{verbatim}
+```
 
 Densification is a rendering-quality mechanism. It is also a source of resource risk and geometric instability. Incorrect poses, or training images that contradict each other, leave persistent pixel residuals; the optimizer may then memorize individual views with more floating Gaussians. Elongated ellipsoids can cover color along a ray while corresponding to no real thin surface. Sky and reflections form distant or large-scale primitives. Aggressive pruning deletes thin lines and semi-transparent objects. Weak pruning lets GPU memory, sort volume, and rendering time grow. The 3DGS output contract should therefore include the Gaussian parameters, spherical-harmonic order, coordinate/scale, cameras, training-image version, densification/pruning configuration, Gaussian count and resource curves, visibility, and low-confidence regions. Storing primitives explicitly is not the same as storing a surface explicitly. That a file is viewable as a PLY does not prove that its topology or collision is usable.
 
@@ -476,7 +476,7 @@ $$
 
 The original RANSAC paper [@srcG012] describes one general mechanism. Draw a minimal sample, fit a model, count inliers against a threshold, then re-estimate from all inliers. Let the minimal sample size be $s$ and the inlier ratio be $w$. To draw at least one all-inlier sample with probability $p$, the theoretical number of iterations is approximately $N=\log(1-p)/\log(1-w^s)$. A low inlier ratio therefore makes computation grow sharply. The same expression also shows that a fixed pixel threshold must be adjusted with resolution and noise. Pure rotation, planar scenes and extremely small baselines may make a homography fit better than an essential matrix. A system that does not compete among degenerate models will mistake image pairs that cannot be triangulated for good initializations.
 
-Step 3: Select the initial image pair and triangulate. Decomposing the essential matrix yields candidate $R,t$. The four solutions are ambiguous. The one with the most positive depths resolves that ambiguity. For a feature track $\mathcal O_j$ formed by multiple images, a linear DLT gives an initial 3D point. Minimizing the multi-view reprojection error then refines it. A triangulation angle that is too small makes depth extremely sensitive to pixel noise. One that is too large may bring appearance changes and occlusion. Practical systems check positive depth, angle, reprojection error and track length together. They do not keep a point as soon as two rays intersect.
+Step 3: Select the initial image pair and triangulate. Decomposing the essential matrix yields candidate $R,$t$. The four solutions are ambiguous. The one with the most positive depths resolves that ambiguity. For a feature track $\mathcal O_j$ formed by multiple images, a linear DLT gives an initial 3D point. Minimizing the multi-view reprojection error then refines it. A triangulation angle that is too small makes depth extremely sensitive to pixel noise. One that is too large may bring appearance changes and occlusion. Practical systems check positive depth, angle, reprojection error and track length together. They do not keep a point as soon as two rays intersect.
 
 Step 4: Register new cameras and extend the observation graph. For an unregistered image, collect 2D–3D correspondences between its 2D features and existing 3D points, then solve for $R_i,t_i$ with PnP-RANSAC. Once registration succeeds, continue triangulating tracks that have not yet become points, matching the new image against its already-registered neighbors. The next image is usually chosen as the one with enough visible 3D points that are well distributed in space. Looking only at the number of correspondences concentrates points in one corner of the image and yields a numerically unstable pose.
 
@@ -486,12 +486,12 @@ $$
 \min_{{R_i,t_i,K_i},{X_j}} \sum_{(i,j)\in\mathcal O} \rho\left( \left\|u_{ij}-\pi\left(K_i(R_iX_j+t_i)\right)\right\|_{\Sigma_{ij}^{-1}}^2 \right).
 $$
 
-$\mathcal O$ is the edge set of the bipartite observation graph. $\pi$ includes the chosen perspective and distortion models. $\Sigma_{ij}$ is the pixel measurement covariance, and $\rho$ is a robust kernel such as Huber or Cauchy. The optimization variables carry gauge freedom in overall scale, rotation and translation. An implementation must therefore fix the first camera and the scale, remove the corresponding degrees of freedom, or add an identifiable prior. Otherwise the Hessian is singular. Distortion parameters and focal length can both be free at once. If the viewing angles are insufficient, the two will compensate for each other. The Jacobian matrix is sparse, because each observation depends on only one camera and one point. Engineering implementations usually eliminate point variables first via the Schur complement, then solve the smaller camera normal equations. Camera blocks, point blocks, observation edges, robust weights and residual statistics are therefore formal data structures, not debugging information.
+$\mathcal{O}$ is the edge set of the bipartite observation graph. $\pi$ includes the chosen perspective and distortion models. $\Sigma_{ij}$ is the pixel measurement covariance, and $\rho$ is a robust kernel such as Huber or Cauchy. The optimization variables carry gauge freedom in overall scale, rotation and translation. An implementation must therefore fix the first camera and the scale, remove the corresponding degrees of freedom, or add an identifiable prior. Otherwise the Hessian is singular. Distortion parameters and focal length can both be free at once. If the viewing angles are insufficient, the two will compensate for each other. The Jacobian matrix is sparse, because each observation depends on only one camera and one point. Engineering implementations usually eliminate point variables first via the Schur complement, then solve the smaller camera normal equations. Camera blocks, point blocks, observation edges, robust weights and residual statistics are therefore formal data structures, not debugging information.
 
 The incremental loop can be written as:
 
 **Indented workflow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 features = detect_and_describe(images)
 candidate_pairs = retrieve_pairs(images)
 for each pair:
@@ -510,7 +510,7 @@ prune_by_reprojection_angle_and_cheirality()
 else:
 quarantine_image()
 global_bundle_adjustment_with_gauge_fix()
-\end{verbatim}
+```
 
 How failures propagate. A wrong descriptor correspondence that passes through RANSAC forms a wrong track. A wrong track shifts the PnP pose. During triangulation, the shifted pose in turn interprets originally correct pixels as wrong depths. Bundle adjustment may reduce the overall residual while "jointly explaining" systematic errors by moving cameras and points, especially under repeated facades, rolling shutter and unmodeled distortion. Once downstream MVS treats these cameras as ground truth, the same plane falls at different depths in different views. Fusion then produces double walls or thick shells. The output contract of SfM must therefore include the coordinate system and scale state, plus each camera's intrinsics and extrinsics with quality/uncertainty. It must also record each point's 3D coordinates, color, track length, triangulation angle and reprojection statistics, along with the observation edges and the rejected images. A standalone PLY sparse point cloud is an incomplete contract.
 
@@ -592,27 +592,27 @@ How failure propagates. A depth bias changes the TSDF zero level set. Errors in 
 
 Learned reconstruction writes the data prior into the traditional state. NeuralRecon [@srcG009] back-projects multi-view features into a sparse 3D volume. It uses sparse convolutions and a GRU to update the hidden state across fragments, predicts local occupancy/TSDF, and then extracts surfaces with Marching Cubes. It partly avoids the accumulation of "per-frame depth error followed by independent fusion". If the voxels completed by the network and the direct observations are not kept in separate layers, however, training-domain bias will be treated as a definite surface. NICE-SLAM [@srcG010] uses multi-level local neural feature grids to represent geometry and color, and continues to optimize them during tracking and mapping. It replaces the fixed grid function of the TSDF with a learnable implicit function, yet still requires poses, keyframes and local/global consistency management.
 
-DUSt3R [@srcG011] does not need camera intrinsics or extrinsics up front. For an image pair $(I_i,I_j)$, it regresses two per-pixel pointmaps and their confidence directly. Each pixel no longer outputs only a scalar depth, but a 3D point in a reference frame of the image pair. The 3D relations among those pointmaps serve the matching role as well. For multiple images, every edge $e=(n,m)$ gives two pointmaps $X^{n,e},X^{m,e}$ in one local coordinate frame. The paper solves for a world-coordinate pointmap $\chi^v$ per image, and for a rigid transformation $P_e$ and a positive scale $\sigma_e$ per edge. Its global alignment objective is
+DUSt3R [@srcG011] does not need camera intrinsics or extrinsics up front. For an image pair $(I_i,I_j)$, it regresses two per-pixel pointmaps and their confidence directly. Each pixel no longer outputs only a scalar depth, but a 3D point in a reference frame of the image pair. The 3D relations among those pointmaps serve the matching role as well. For multiple images, every edge $e=(n,m)$ gives two pointmaps $X^{n,e},X^{m,e}$ in one local coordinate frame. The paper solves for a world-coordinate pointmap $\chi^$v$ per image, and for a rigid transformation $P_e$ and a positive scale $\sigma_e$ per edge. Its global alignment objective is
 
 $$
 \min_{\chi,P,\sigma} \sum_{e=(i,j)}\sum_{v\in{i,j}}\sum_p c^v_{e,p} \left\|\chi^v_p-\sigma_eP_eX^{v,e}_p\right\|_2, \qquad \prod_e\sigma_e=1.
 $$
 
-$c$ is the network confidence. The constraint $\prod_e\sigma_e=1$ rules out the trivial solution in which all scales shrink to zero at once. The same $P_e$ maps both pointmaps of the pair to the world pointmap at once, so the predictions of a shared image must stay consistent across its different edges. The paper also gives an extension in which a pinhole model parameterizes $\chi^v$ and recovers the camera and depth. The core change compresses the past discrete chain of "descriptor matching→essential matrix→triangulation" into a feed-forward pointmap. Edges are then merged by 3D alignment rather than traditional 2D reprojection BA.
+$c$ is the network confidence. The constraint $\prod_e\sigma_e=1$ rules out the trivial solution in which all scales shrink to zero at once. The same $P_e$ maps both pointmaps of the pair to the world pointmap at once, so the predictions of a shared image must stay consistent across its different edges. The paper also gives an extension in which a pinhole model parameterizes $\chi^$v$ and recovers the camera and depth. The core change compresses the past discrete chain of "descriptor matching→essential matrix→triangulation" into a feed-forward pointmap. Edges are then merged by 3D alignment rather than traditional 2D reprojection BA.
 
 VGGT [@srcVGGT-2025] places multi-frame patch tokens and camera tokens into a shared Transformer. One forward pass then jointly predicts the camera, depth, pointmaps, and point tracks. The model reduces pairwise module boundaries, so sparse, low-texture inputs can also obtain strong initial values from the training prior. Its native data structure is still "frame-level camera tensors + pixel-level depth/pointmaps/confidence + tracks." It is not a half-edge mesh or a physical scene graph.
 
 A more reliable production pipeline does not treat classical optimization and feed-forward models as alternatives. Instead it does this:
 
 **Indented workflow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 The feed-forward network outputs cameras, depth/point maps, trajectories, and confidence
 → build an observation graph from high-confidence trajectories and isolate low-confidence and dynamic pixels
 → perform local BA / pose graph correction with reprojection, scale anchors, and loop-closure constraints
 → re-fuse depth or align the point maps according to the corrected poses
 → store the direct-observation mask and the model-completion mask separately
 → proceed to the implicit field, Gaussian, or point-cloud surfacing stage
-\end{verbatim}
+```
 
 This "feed-forward initialization + explicit constraint correction" explains how the optimization approach evolved. The network lowers the threshold for cold start and low-texture matching, while geometric optimization re-imposes the real observations of the current scene onto the result. The same framing also preserves honest boundaries. The training prior may fill a common wall over a real doorway. Confidence may be uncalibrated. The scale of long sequences will drift, and dynamic objects may produce mutually contradictory pointmaps. If these points are sent directly into Poisson, model hallucination will become a watertight fake wall. If they directly generate colliders, visual bias will escalate into gameplay errors.
 
@@ -646,7 +646,7 @@ $$
 
 When $\lambda_0$ and $\lambda_1$ are very close, the local region does not look like a stable plane, so the normal confidence should be reduced. A neighborhood that is too small leaves the normal following noise. One that is too large averages sharp corners and the two sides of a thin layer together. Normal stability should be checked at several physical radii. The scale should be chosen according to the sensor resolution, not by point count alone.
 
-PCA determines only the axis. It does not say which of $n$ and $-n$ is the outer side. Where the camera center $o_i$ is known for each point, one can enforce $n_i^\top(o_i-p_i)>0$ on visible surfaces, so the normal points toward the camera. If the application's convention is that the outward normal points away from the camera, flip all of them as a whole. Multi-view points should be oriented by the most trustworthy observation or by line-of-sight voting, not by an arbitrary choice of first frame. When no viewpoint is available, one can build an adjacency graph and a minimum spanning tree whose edge cost is $1-|n_i^\top n_j|$. Then flip adjacent normals from the root normal so that the dot product is positive, and use a known exterior point to decide the overall sign.
+PCA determines only the axis. It does not say which of $n$ and $-$n$ is the outer side. Where the camera center $o_i$ is known for each point, one can enforce $n_i^\top(o_i-p_i)>0$ on visible surfaces, so the normal points toward the camera. If the application's convention is that the outward normal points away from the camera, flip all of them as a whole. Multi-view points should be oriented by the most trustworthy observation or by line-of-sight voting, not by an arbitrary choice of first frame. When no viewpoint is available, one can build an adjacency graph and a minimum spanning tree whose edge cost is $1-|n_i^\top n_j|$. Then flip adjacent normals from the root normal so that the dot product is positive, and use a known exterior point to decide the overall sign.
 
 Normal propagation does not fail from local noise alone. When the two sides of a thin shell are mutual nearest neighbors in Euclidean distance, the graph will connect them across the gap. One side is then flipped incorrectly as a whole, and Poisson will propagate that orientation error into a large-scale spurious shell. The two sides of a sharp corner should start with different normals. Forcing global smoothing will round the edges. The normal stage must therefore output the neighborhood scale, the three eigenvalues, and the orientation confidence. It must also report the source of the orientation, edge markers, and all flip events.
 
@@ -685,7 +685,7 @@ Coordinate conventions depend on the asset version. The export specifications pa
 The pseudocode below shows how to integrate the public exports into an engine safely. It describes a client-side asset pipeline proposed by this survey. It is not Marble's internal model algorithm.
 
 **The text flow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 Input: Marble task ID, export manifest, target engine coordinate system and units
 1. Save the model version, task time, input types, and export options.
 2. Download SPZ/PLY, visual GLB, collider GLB, and textures; compute the byte sizes and SHA-256.
@@ -698,7 +698,7 @@ Input: Marble task ID, export manifest, target engine coordinate system and unit
 9. Run penetration, falling, door-width, slope, revisit, and coordinate-orientation tests.
 10. If any item fails, isolate the asset, keep the original files and logs, and do not automatically replace the collider with the visual mesh.
 Output: layered visual/physics assets, a provenance manifest, a validation report, and a rollback-capable version.
-\end{verbatim}
+```
 
 The algorithm insists above all on separating the visual and physical layers. A visual mesh of about 600,000 faces, set directly as a dynamic triangle mesh collider, would raise broad-phase and narrow-phase costs. Holes and floating surfaces may also produce abnormal contacts. Rendering with the coarse collider of 100,000 to 200,000 faces, conversely, would lose materials and detail. A NavMesh cannot be generated directly from splats either. Walkability requires a continuous surface, slope, clearance and agent size.
 
@@ -743,7 +743,7 @@ How failures propagate. A tiny error in the input camera can make the same edge 
 The original Ball-Pivoting Algorithm paper [@srcP002] assumes a sufficiently smooth source surface, sampled densely enough to be compatible with the ball radius $r$. Three points can form a candidate triangle if they can jointly support a ball of radius $r$. The ball must touch all three points, and no other samples may lie inside it. The algorithm first finds a seed triangle whose orientation is compatible with the input normals, and puts its three edges into the active front. For a directed edge, the ball keeps touching both endpoints of the edge and rotates around that edge. The first new point it touches forms an adjacent triangle with that edge. The front is then updated until no edge can be pivoted. Multi-radius BPA uses small balls to recover detail, then larger balls to connect sparser regions.
 
 **Indented workflow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 Build a k-d tree and estimate consistent normals
 for r in the sequence of radii from small to large:
 find seed triangles that are not yet covered and whose supporting ball is empty
@@ -756,7 +756,7 @@ if q exists:
 output triangle (e.start, e.end, q)
 update or cancel the active edge
 output boundary loops, unused points, and non-manifold conflicts
-\end{verbatim}
+```
 
 The data structures are a spatial index, an active half-edge front, the set of generated triangles, and point/edge usage state. The precondition for correctness is not that “any point cloud can roll out a surface.” It is sampling dense enough, noise small relative to $r$, consistent normals, and a local surface that can accommodate the ball. If $r$ is smaller than the point spacing, the surface fragments. If $r$ is larger than a real hole, the ball will cross the hole. If it is larger than the spacing of a thin layer, the ball will bridge the two layers. A noise point can become the pivoting contact point first. Wrongly oriented normals will reject correct triangles or produce flipped faces.
 
@@ -784,7 +784,7 @@ $$
 \Delta\chi=\nabla\cdot V.
 $$
 
-The actual algorithm represents $\chi=\sum_kx_kB_k$ with local basis functions on an adaptive octree. It assembles a sparse linear system $Ax=b$, solves for the coefficients with a multiscale solver or an iterative method, then extracts the surface at the isovalue $\chi=\tau$. The octree depth controls the smallest cell and the memory. The number of samples per node affects adaptive refinement. Sample density estimation can help trim extrapolated surfaces supported by very few points. The original Screened Poisson paper [@srcP004] adds a point-value constraint beyond gradient fitting, which it abstracts as
+The actual algorithm represents $\chi=\sum_kx_kB_k$ with local basis functions on an adaptive octree. It assembles a sparse linear system $Ax=$b$, solves for the coefficients with a multiscale solver or an iterative method, then extracts the surface at the isovalue $\chi=\tau$. The octree depth controls the smallest cell and the memory. The number of samples per node affects adaptive refinement. Sample density estimation can help trim extrapolated surfaces supported by very few points. The original Screened Poisson paper [@srcP004] adds a point-value constraint beyond gradient fitting, which it abstracts as
 
 $$
 \min_\chi \int\|\nabla\chi-V\|^2dx +\lambda\sum_i(\chi(p_i)-\chi_0)^2,
@@ -793,7 +793,7 @@ $$
 This term brings the isosurface closer to the samples and reduces the over-smoothing of the original Poisson. A $\lambda$ that is too large will also follow the noise. The continuous objective above explains the mechanism. The specific octree basis functions, the discretization of the screening term and the solver should come from the paper and the implementation version.
 
 **Indented workflow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 Input oriented points, confidence weights, and the reconstruction bounding box
 → build an adaptive octree and splat the normals into a vector field V
 → assemble the Laplacian sparse matrix A and the divergence right-hand side b
@@ -802,9 +802,9 @@ Input oriented points, confidence weights, and the reconstruction bounding box
 → determine the iso-value tau from function statistics at the samples
 → extract the iso-surface on the octree and clip by support density
 → output the mesh, per-vertex density, boundaries, connected components, and parameters
-\end{verbatim}
+```
 
-Poisson is correct only when the input has fairly consistent oriented normals and the user accepts the global smoothing and closure prior. It can bridge small gaps and suppress noise, and it tends to produce watertight surfaces. Without the original sightlines, however, there is no way to know whether a gap is a scanning hole or a door or window. A wrong normal does not merely flip one local triangle. It changes $\nabla\cdot V$, and the error propagates through the global equation into a large shell or a wrong inside/outside. The bounding box, octree depth and isovalue threshold also change volume and thin structures. Watertightness is a property of the algorithm, not evidence of scene authenticity. Surfaces filled in from low sample density must be marked separately. Their provenance must be retained as well, so that the surfaces can be verified against the original rays.
+Poisson is correct only when the input has fairly consistent oriented normals and the user accepts the global smoothing and closure prior. It can bridge small gaps and suppress noise, and it tends to produce watertight surfaces. Without the original sightlines, however, there is no way to know whether a gap is a scanning hole or a door or window. A wrong normal does not merely flip one local triangle. It changes $\nabla\cdot $V$, and the error propagates through the global equation into a large shell or a wrong inside/outside. The bounding box, octree depth and isovalue threshold also change volume and thin structures. Watertightness is a property of the algorithm, not evidence of scene authenticity. Surfaces filled in from low sample density must be marked separately. Their provenance must be retained as well, so that the surfaces can be verified against the original rays.
 
 #### TSDF＋Marching Cubes: retaining free/unknown semantics before extracting the isosurface
 
@@ -838,7 +838,7 @@ The half-edge structure splits each undirected edge into two oppositely directed
 
 During construction, place the directed key $(a,b)$ in a hash table. Look up $(b,a)$ to build the twin. When the same undirected key appears more than twice, record the conflict. Do not pair two of them arbitrarily. At the same time, independent attribute indices must be stored. The two sides of a UV seam at the same position usually need different texture coordinates and tangents. Rendering formats may duplicate vertices as well. The topology layer can share geometric vertices. The rendering layer instead expands by the combination of position, normal, UV, material and skin. If the two layers are confused, “welding duplicate vertices” destroys hard edges and UVs.
 
-A consistency audit can draw on the Euler characteristic $\chi=V-E+F$, on connected components, on the number of boundary loops and on the number of incident faces per edge. A single Euler number cannot point to the location of a defect, however, nor can it determine whether a hole is genuine. The half-edge structure pays off because every later repair and edge collapse can query its topological impact locally.
+A consistency audit can draw on the Euler characteristic $\chi=V-E+$F$, on connected components, on the number of boundary loops and on the number of incident faces per edge. A single Euler number cannot point to the location of a defect, however, nor can it determine whether a hole is genuine. The half-edge structure pays off because every later repair and edge collapse can query its topological impact locally.
 
 #### Repair Order: First Diagnose Defects, Then Decide by Asset Intent Whether to Modify
 
@@ -866,7 +866,7 @@ $$
 (p^\top\bar v)^2=\bar v^\top(pp^\top)\bar v.
 $$
 
-A face therefore contributes a 4×4 symmetric matrix $K_p=pp^\top$. The quadric error matrix of a vertex $v$ sums over its incident faces, $Q_v=\sum_{p\ni v}K_p$. The cost of collapsing a candidate vertex pair $(v_i,v_j)$ to a new point $\bar v$ is
+A face therefore contributes a 4×4 symmetric matrix $K_p=pp^\top$. The quadric error matrix of a vertex $v$ sums over its incident faces, $Q_v=\sum_{p\ni v}K_p$. The cost of collapsing a candidate vertex pair $(v_i,v_j)$ to a new point $\bar $v$ is
 
 $$
 \Delta(v_i,v_j\rightarrow\bar v) =\bar v^\top(Q_i+Q_j)\bar v.
@@ -875,7 +875,7 @@ $$
 If the upper-left 3×3 block of $Q=Q_i+Q_j$ is invertible, the optimal position can be solved under the constraint that the homogeneous last component equals 1. If the block is singular, choose the lowest-cost option among finite candidates such as the two endpoints and the midpoint. The original paper also allows vertex pairs not necessarily connected by an existing edge, to promote aggregation. Engineering implementations aimed at topology-preserving assets usually restrict candidates to edges and additionally check local topology. The algorithm places all legal candidates in a min-heap. It pops the lowest cost each time, then checks the entry version and topological legality. The collapse follows, $Q_i+Q_j$ accumulates, and only the local adjacent edges are updated.
 
 **Indented Procedure or Pseudocode in the Original Manuscript**
-\begin{verbatim}
+```
 Compute the plane quadric Kp for each face
 Accumulate Qv for each vertex and add boundary/feature constraints
 For each edge allowed to collapse, compute the candidate position and cost, and push them into the min-heap
@@ -884,7 +884,7 @@ pop the lowest-cost edge whose version is still valid
 if it violates the link condition or locked attributes, reject the edge
 perform the collapse and update half-edges, faces, attributes, and Q
 recompute the local candidates and write versioned heap entries
-\end{verbatim}
+```
 
 QEM's correctness presupposes that the local planar quadric distance can represent the geometric quality to be preserved. It does not automatically protect texture, semantics, or physical function. Without restrictions, boundaries shorten, sharp corners round off, two closely spaced thin layers may become connected, and door gaps narrow. Merging the two sides of a UV seam stretches the texture. Material edges and hard normals are lost, and skinning weight blending makes joints collapse. Common constraints forbid collapses across material, object, and semantic edges. Boundary points may move only along the boundary. Silhouettes and feature edges receive high-weight constraint planes. Others limit normal flips, minimum triangle area, local Hausdorff error, UV distortion, and bone weight change. The link condition is checked before collapsing, to avoid creating non-manifold geometry.
 
@@ -937,12 +937,12 @@ Modifiers and Geometry Nodes introduce a second key distinction. The base mesh i
 One reliable order for a headless Blender build runs as follows. Clear the scene or open a fixed template. Set units, axes, renderer, and color management. Create collections, objects, and meshes from parameters, then add and configure modifiers and node groups. Evaluate in the dependency graph. Derive visual, collision, and LOD geometry separately. Run geometry checks, export to a temporary path, and read the result back with the target importer. If the read-back passes, move the result atomically into the release directory. The command line should run in background mode, name the script path explicitly, and return a non-zero exit code on Python exceptions. Parse business parameters after `--`. Blender's command-line documentation also reminds us that arguments execute in the order they appear, and that loading a `.blend` overrides scene options set earlier. The command order is therefore part of the reproduction contract itself. Blender Command Line [@webab7044d6a1d4]
 
 **Text Workflow or Pseudocode in the Original Manuscript**
-\begin{verbatim}
+```
 blender --background --factory-startup \
 --disable-autoexec --python-exit-code 2 \
 trusted_template.blend \
 --python build_scene.py -- --config room.json --out build/
-\end{verbatim}
+```
 
 `--disable-autoexec` must appear before the untrusted `.blend` path, because Blender processes command-line arguments in order. The flag is a necessary auto-execution control. It is not a Python sandbox, and it is not a complete security boundary. In particular, it does not restrict a 〈--python build_scene.py〉 specified explicitly on the command line, so that script itself must already have been reviewed. Blender's official security documentation explains that a `.blend` file can contain registered text blocks and Python driver expressions. The same documentation notes that Python itself does not limit what a script can do. Downloaded source files, add-ons, and build scripts must therefore first enter a worker with no credentials, no network, low privileges, read-only inputs, a bounded output root, and resource quotas. Auto-execution is disabled there by default. Blender Script Security [@srcS020]
 
@@ -954,7 +954,7 @@ $$
 S=(S_1\cup S_2)\setminus\bigcup_k H_k,
 $$
 
-Here $S_1,S_2$ are the main bodies, and $H_k$ are doorways, holes, or slots. The code stores the tree and the parameters. A triangle mesh such as STL/3MF is merely the evaluation result at a particular resolution and kernel version. OpenSCAD's official command-line interface supports overriding variables with `-D` and exports according to the `-o` suffix, which makes it suitable for batch-building parameter combinations in CI. OpenSCAD Command Line [@srcOSC-CLI] Fast preview is usually an approximate display produced by OpenCSG/OpenGL. It cannot replace the final `render`/export evaluation and checking of the solid. The solid backend also varies with version and configuration, and the 2025 development snapshot has made Manifold the default while retaining the CGAL option. The manifest must therefore pin the OpenSCAD version, the actual backend, discrete parameters such as 〈$fn/$fa/$fs〉, and the complete command. Neither an artifact-free preview nor a vague "using OpenSCAD" can be treated as reproducible evidence. OpenSCAD Backend Announcement [@srcOSC-MANIFOLD-DEFAULT]
+Here $S_1,S_2$ are the main bodies, and $H_k$ are doorways, holes, or slots. The code stores the tree and the parameters. A triangle mesh such as STL/3MF is merely the evaluation result at a particular resolution and kernel version. OpenSCAD's official command-line interface supports overriding variables with `-D` and exports according to the `-o` suffix, which makes it suitable for batch-building parameter combinations in CI. OpenSCAD Command Line [@srcOSC-CLI] Fast preview is usually an approximate display produced by OpenCSG/OpenGL. It cannot replace the final `render`/export evaluation and checking of the solid. The solid backend also varies with version and configuration, and the 2025 development snapshot has made Manifold the default while retaining the CGAL option. The manifest must therefore pin the OpenSCAD version, the actual backend, discrete parameters such as 〈\$fn/\$fa/\$fs〉, and the complete command. Neither an artifact-free preview nor a vague "using OpenSCAD" can be treated as reproducible evidence. OpenSCAD Backend Announcement [@srcOSC-MANIFOLD-DEFAULT]
 
 Boolean failures cluster around geometric predicates and boundary representations. Coplanar overlaps, zero-thickness contacts, extremely thin slivers, excessive scale spans, near-duplicate faces, and self-intersecting inputs make inside/outside classification or topology splitting unstable. Expanding each cutting body by an arbitrary epsilon can sometimes avoid coplanarity, but it also changes dimensions and thin walls that closure should have preserved. A more reliable strategy has four parts. Specify minimum features and tolerances relative to the bounding box. Verify before the boolean that the inputs are closed oriented solids. Record component and volume changes at each step. Re-check boundaries, non-manifoldness, self-intersections, and target dimensions after export. A valid CSG tree proves only that the operation can be described. It does not prove that the discrete mesh is suitable for rendering or collision.
 
@@ -991,7 +991,7 @@ A reliable library-style pipeline should retain the immutable source mesh and th
 The main function of a procedural build should be a pure parameter interface, with host operations converging into a boundary adapter. The pseudocode below deliberately separates visual from collision and reads back again before publishing:
 
 **Text workflow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 build(config, seed, toolchain_lock):
 assert validate_schema_units_ranges(config)
 intent = canonicalize(config, seed, toolchain_lock)
@@ -1004,7 +1004,7 @@ roundtrip = import_with_target_or_second_parser(temp)
 assert query_equivalence(scene, roundtrip)
 manifest = hash_inputs_outputs_and_metrics(intent, temp, roundtrip)
 atomic_publish(temp, manifest)
-\end{verbatim}
+```
 
 `build_collision_from_intent` matters. The collision clearance of a door opening is best reconstructed from the same door width/height parameters, rather than by performing unconstrained simplification on the high-poly visual model. This way visual trim strips can exist while the collision proxy still maintains a clear passage contract. Object IDs should also be derived from semantic paths and stable parameters, not by relying on "which object in the current array". Otherwise a single insertion misaligns saved files, network replication, and differential updates.
 
@@ -1019,7 +1019,7 @@ This hybrid route has a fixed acceptance order. First ask whether the rules sati
 #### The Full Flow from Candidate Surface to Production Asset and Failure Propagation
 
 **Indented flow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 Load the candidate mesh, the provenance mapping, and the coordinate contract
 → validate the parse budget, indices, finite numbers, units, handedness, and hierarchical transforms
 → remove exact duplicates and degeneracies by a scale threshold, preserving attribute seams
@@ -1031,7 +1031,7 @@ Load the candidate mesh, the provenance mapping, and the coordinate contract
 → generate constrained QEM LODs and HLOD provenance mappings
 → run geometry, topology, rendering, attribute, and import round-trip tests
 → export the visual asset and a separate downstream collision candidate
-\end{verbatim}
+```
 
 In this chain, errors amplify rather than vanish on their own. A pose deviation in Chapter 6 makes MVS/TSDF produce double-layer surfaces. The color fitting or densification in Chapter 7 reads that double layer as a stable primitive. The Poisson step in Chapter 8 seals it into a shell. The welding and QEM steps in Chapter 9 may then join the inner and outer layers into self-intersections, or block the openings. Once UV baking covers geometric seams with blended colors, visual inspection becomes even harder. Conversely, chasing topological perfection too hard can also repair genuinely open structures into watertight fake objects. Every conversion should record its provenance mapping and its difference metrics. A problem can then be traced back to the stage that produced it.
 
@@ -1099,9 +1099,9 @@ $$
 
 where $A(B)$ is the box surface area, $N_L,N_R$ count the primitives of the subtrees, and $C_t,C_i$ are the traversal cost and the primitive-test cost. A query starts from the root. If the query bounding volume does not overlap a node box, the node prunes. Only on overlap does the query visit the children, until a leaf node is handed to the narrow phase. Rays, overlaps and sweeps can reuse the same BVH, but their query bounding volumes differ. What is adopted here is the SAH form that MacDonald and Booth developed to approximate intersection probability by surface area. It is a construction heuristic, not a theorem that is optimal for every query distribution. That form comes from the original SAH paper[@srcSAH-1990].
 
-Dynamic objects have three common update strategies. A bottom-up refit follows a rigid transform. A dynamic AABB tree suits frequent insertions and deletions. Asynchronous rebuild follows long-term degradation. To keep tiny motions from moving the tree every frame, an object can use a "fat AABB" expanded by the contact offset and the short-term velocity. High-speed objects use a swept AABB from $t$ to $t+\Delta t$. Too small an expansion misses candidates. Too large an expansion makes narrow-phase candidates explode. For the PhysX MBP broad phase, a large-world partition must use regions that cover all active space. The official documentation explicitly says that only eMBP requires regions. Objects that fall outside all regions will not join the broad phase, and their collisions are disabled. SAP, ABP, PABP and GPU broad phase do not depend on this set of regions. The relevant PhysX type is PxBroadPhaseRegion[@srcPHYSX-MBP-REGION]. Therefore, only when MBP is selected must scene streaming update the visual cells, broad-phase regions and object proxies as a single transaction. This requirement must not be extrapolated into a fixed precondition for all PhysX broad-phase algorithms.[@srcC004]
+Dynamic objects have three common update strategies. A bottom-up refit follows a rigid transform. A dynamic AABB tree suits frequent insertions and deletions. Asynchronous rebuild follows long-term degradation. To keep tiny motions from moving the tree every frame, an object can use a "fat AABB" expanded by the contact offset and the short-term velocity. High-speed objects use a swept AABB from $t$ to \$t+\Delta $t$. Too small an expansion misses candidates. Too large an expansion makes narrow-phase candidates explode. For the PhysX MBP broad phase, a large-world partition must use regions that cover all active space. The official documentation explicitly says that only eMBP requires regions. Objects that fall outside all regions will not join the broad phase, and their collisions are disabled. SAP, ABP, PABP and GPU broad phase do not depend on this set of regions. The relevant PhysX type is PxBroadPhaseRegion[@srcPHYSX-MBP-REGION]. Therefore, only when MBP is selected must scene streaming update the visual cells, broad-phase regions and object proxies as a single transaction. This requirement must not be extrapolated into a fixed precondition for all PhysX broad-phase algorithms.[@srcC004]
 
-The broad-phase data structure should record at least 〈node_aabb, child_or_primitive, layer_mask, dynamic_flag, generation〉. Here generation prevents an old handle from being reused after asynchronous deletion. Layer mask filters out categories that need no contact before candidates are generated. NaN/Inf, reversed-order bounds caused by negative scale, an un-updated transform or an extremely large AABB will contaminate the entire tree. At the mildest, candidates surge. At the worst, objects are missed entirely. Before all shapes enter the broad phase, finite numbers, $\ell\le u$, a scale limit and world bounds checks should be enforced.
+The broad-phase data structure should record at least 〈node_aabb, child_or_primitive, layer_mask, dynamic_flag, generation〉. Here generation prevents an old handle from being reused after asynchronous deletion. Layer mask filters out categories that need no contact before candidates are generated. NaN/Inf, reversed-order bounds caused by negative scale, an un-updated transform or an extremely large AABB will contaminate the entire tree. At the mildest, candidates surge. At the worst, objects are missed entirely. Before all shapes enter the broad phase, finite numbers, $\ell\le $u$, a scale limit and world bounds checks should be enforced.
 
 #### Convex Narrow Phase: Convex Hulls, GJK, EPA, and SAT
 
@@ -1159,7 +1159,7 @@ Neither family of methods is an unconditional fixer. CoACD assumes a solid manif
 
 #### Triangle meshes, SDF, discrete collision, and continuous collision
 
-In static scenes, the proxy that stays closest to the reference surface is usually a triangle mesh. The narrow phase first uses a triangle BVH to find candidates, then performs sphere/capsule/convex–triangle or triangle–triangle tests. A contact point on a triangle can be written in barycentric coordinates $p=\alpha a+\beta b+\gamma c$, where $\alpha+\beta+\gamma=1$ and all three are non-negative. The normal comes from the oriented triangle or from a smoothed geometric normal. A normal map modified for rendering cannot be used directly. A closed, consistently oriented 2-manifold mesh can define inside and outside. An arbitrary triangle soup, or a triangle-mesh shape that the engine queries only by surface, does not automatically provide a reliable solid interior. A per-triangle mesh preserves concave shape, yet still has three engineering limitations. Whether backfaces make contact depends on engine settings. Tiny triangles create contact-normal jitter. The contact pairs and mass properties of a moving concave mesh are very hard to keep stable. The official PhysX contract therefore by default does not allow TriangleMesh, HeightField or Plane as the simulation shape of a non-kinematic dynamic actor. A dynamic triangle mesh with SDF is a specific path, subject to cooking, valid mass/inertia and resolution requirements.[@srcC004]
+In static scenes, the proxy that stays closest to the reference surface is usually a triangle mesh. The narrow phase first uses a triangle BVH to find candidates, then performs sphere/capsule/convex–triangle or triangle–triangle tests. A contact point on a triangle can be written in barycentric coordinates $p=\alpha a+\beta b+\gamma $c$, where $\alpha+\beta+\gamma=1$ and all three are non-negative. The normal comes from the oriented triangle or from a smoothed geometric normal. A normal map modified for rendering cannot be used directly. A closed, consistently oriented 2-manifold mesh can define inside and outside. An arbitrary triangle soup, or a triangle-mesh shape that the engine queries only by surface, does not automatically provide a reliable solid interior. A per-triangle mesh preserves concave shape, yet still has three engineering limitations. Whether backfaces make contact depends on engine settings. Tiny triangles create contact-normal jitter. The contact pairs and mass properties of a moving concave mesh are very hard to keep stable. The official PhysX contract therefore by default does not allow TriangleMesh, HeightField or Plane as the simulation shape of a non-kinematic dynamic actor. A dynamic triangle mesh with SDF is a specific path, subject to cooking, valid mass/inertia and resolution requirements.[@srcC004]
 
 SDF uses a scalar field to represent the signed distance to the surface:
 
@@ -1167,9 +1167,9 @@ $$
 \phi(x)= -\operatorname{dist}(x,\partial S),x\in S, +\operatorname{dist}(x,\partial S),x\notin S.
 $$
 
-A point, or a sphere of radius $r$, makes contact when $\phi(x)\le r$. The contact normal can be approximated by $n=\nabla\phi/\|\nabla\phi\|$. A regular voxel grid supports constant-time trilinear sampling, while sparse bricks, octrees or narrow-band hashes store only the region near the surface. SDF is especially suited to particle–complex-surface interaction, distance queries and certain complex dynamic objects. “having a distance volume”, however, does not mean the distance ground truth holds. The sign of an open mesh is uncertain, and self-intersection and thin walls conflict. Voxels that are too coarse swallow thin structures, and voxels that are too fine raise memory and bandwidth. The PhysX documentation is explicit here. An SDF resolution that is too low misses thin parts, and one that is too high increases memory and collision time. The cooker may also close holes in a non-watertight mesh on its own.[@srcC004] For the engineering basis and discretization boundaries of GPU SDF construction, see [@srcC008].
+A point, or a sphere of radius $r$, makes contact when $\phi(x)\le $r$. The contact normal can be approximated by $n=\nabla\phi/\|\nabla\phi\|$. A regular voxel grid supports constant-time trilinear sampling, while sparse bricks, octrees or narrow-band hashes store only the region near the surface. SDF is especially suited to particle–complex-surface interaction, distance queries and certain complex dynamic objects. “having a distance volume”, however, does not mean the distance ground truth holds. The sign of an open mesh is uncertain, and self-intersection and thin walls conflict. Voxels that are too coarse swallow thin structures, and voxels that are too fine raise memory and bandwidth. The PhysX documentation is explicit here. An SDF resolution that is too low misses thin parts, and one that is too high increases memory and collision time. The cooker may also close holes in a non-watertight mesh on its own.[@srcC004] For the engineering basis and discretization boundaries of GPU SDF construction, see [@srcC008].
 
-Discrete collision detection (DCD) checks shapes only at $t_k$ and $t_{k+1}$. Suppose a wall is thinner than the object's own travel distance in one step. If the object crosses it, neither endpoint intersects, and tunneling occurs. A smaller $\Delta t$ alleviates the problem, but the cost grows linearly and there is still no formal guarantee. Continuous collision detection (CCD) solves for the earliest contact time
+Discrete collision detection (DCD) checks shapes only at $t_k$ and $t_{k+1}$. Suppose a wall is thinner than the object's own travel distance in one step. If the object crosses it, neither endpoint intersects, and tunneling occurs. A smaller $\Delta $t$ alleviates the problem, but the cost grows linearly and there is still no formal guarantee. Continuous collision detection (CCD) solves for the earliest contact time
 
 $$
 t^*=\inf{t\in[0,\Delta t]\mid A(t)\cap B(t)\ne\emptyset}.
@@ -1196,7 +1196,7 @@ Triangle marking and voxelization. Move the input triangles into a unified world
 The core construction can be written as the pseudocode below:
 
 **Text procedure or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 build_navmesh(reference_collision, agent, grid, tiles):
 assert finite(reference_collision) and units_locked()
 for tile in tiles:
@@ -1219,7 +1219,7 @@ detail = sample_detail_height(poly, chf)
 validate_tile(poly, detail, trusted_free_space)
 stage(tile, poly, detail)
 atomic_commit(all_staged_tiles)
-\end{verbatim}
+```
 
 Failure propagation can be localized step by step. Suppose the input collider misses a wall. After voxelization no obstacle exists there, erosion cannot make it back, and the final path goes through the wall. If the input proxy seals a door shut, all agents are unreachable. Cells that are too coarse quantize away thin walls or narrow bridges. A height that is too coarse merges upper and lower layers. A radius that is too small makes a corridor passable on the graph, while the body scrapes the wall at runtime. A minimum region area that is too large deletes valid small platforms. A contour simplification error that is too large cuts concave corners into shortcuts. Insufficient tile border produces seams. A misconfigured off-mesh link or area cost produces impossible jumps or long detours. Unity AI Navigation, Unreal Navigation System, and Godot NavigationMesh each expose different parameters and dynamic-update interfaces [V002—V004]. None of them can go beyond these configuration-space constraints.
 
@@ -1246,7 +1246,7 @@ MultiGen [@srcW15], in turn, splits a diffusion game engine into Memory, Observa
 For production systems, an auditable persistent-state contract takes the form of the engineering pseudocode below. That contract is this survey's design recommendation. It is not the original algorithm of the papers above.
 
 **Text flow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 PersistentWorld W = {
 coordinate_system, metric_scale,
 camera_state,
@@ -1262,7 +1262,7 @@ At each interaction step:
 4. Run geometry, physics, permission, and consistency checks on the proposal.
 5. If it passes, commit it as a new version; otherwise roll back or degrade it to a read-only visual layer.
 6. Render observations from the committed world state and return the observations to the agent or user.
-\end{verbatim}
+```
 
 This contract keeps "generation proposals" apart from "committing world facts." Object IDs, coordinates, collision shapes, mass, script variables, and random seeds no longer exist only in the image. Multiple cameras can query the same world version, and it can also branch from a snapshot. The price is that the system must handle state merging, version conflicts, provenance tracking, and rejection policies for model proposals.
 
@@ -1277,7 +1277,7 @@ The world model and the geometric asset layer should therefore meet at a bidirec
 glTF 2.0 organizes transmission assets with scene/node/mesh/primitive/accessor/buffer/material/skin/animation [@srcE001]. OpenUSD goes further, providing layer, reference, payload, variant, and composition semantics [@srcE003]. Those semantics suit collaboration and lazy loading of large worlds. Both formats describe "how data is organized." Neither defines collision, navigation, and trust policies for a project. The recommendation is to model each object instance as a record with a stable ID:
 
 **Text flow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 EntityRecord {
 entity_id, parent_id, local_transform, world_anchor,
 render_asset_hash, reference_geometry_hash,
@@ -1285,7 +1285,7 @@ collider_asset_hash, nav_source_policy,
 material_set, lod_group, stream_cell,
 semantic_tags, provenance, build_generation
 }
-\end{verbatim}
+```
 
 `render_asset_hash` can change with the quality LOD, whereas `collider_asset_hash` should not change unconditionally along with it. `nav_source_policy` specifies which collision layers can participate in which kind of agent baking. `build_generation` lets asynchronous tasks know whether a result is already stale. The asset graph must also explicitly record external URIs, textures, shaders, scripts, plug-ins, and derived artifacts. Otherwise a seemingly standalone model will, through dependency resolution, access the network, inflate memory, or load unaudited code.
 
@@ -1297,7 +1297,7 @@ Every arrow carries the input/output SHA-256, tool and engine versions, paramete
 
 #### Coordinates, units, and transforms: one error flips rendering, normals, and inertia at the same time
 
-Axes, handedness, and units are not unified across formats and engines. glTF defines right-handed coordinates, with metric linear units and $+Y$ up. The camera looks along local $-Z$ [@srcE001]. Unity 6's official coordinate description [@web63e3b82be661] gives a left-handed system with $+X$ to the right, $+Y$ up, and $+Z$ forward. Unreal's official coordinate description [@web13b524de5f08] gives a left-handed editor world with $+Z$ up. The units documentation [@web751e3dac8b3b] states that the default unit of length is centimeters, and that projects can adjust display units. The Godot stable documentation [@web1be2050fd5de] gives right-handed $Y$-up, with the built-in camera forward as $-Z$. The conventional front of oriented models is $+Z$ instead. The two cannot be written interchangeably. PhysX 5.5's official API description [@web69cac7e876c8], by contrast, does not mandate meters or centimeters. It only requires that inputs remain consistent, and uses `PxTolerancesScale` to set typical length and speed. The same scale applies to the physics, cooking, and scene configuration. Conversion therefore cannot merely "swap two components" on the vertices. It should define a homogeneous transform from source to world:
+Axes, handedness, and units are not unified across formats and engines. glTF defines right-handed coordinates, with metric linear units and $+$Y$ up. The camera looks along local $-$Z$ [@srcE001]. Unity 6's official coordinate description [@web63e3b82be661] gives a left-handed system with $+$X$ to the right, $+$Y$ up, and $+$Z$ forward. Unreal's official coordinate description [@web13b524de5f08] gives a left-handed editor world with $+$Z$ up. The units documentation [@web751e3dac8b3b] states that the default unit of length is centimeters, and that projects can adjust display units. The Godot stable documentation [@web1be2050fd5de] gives right-handed $Y$-up, with the built-in camera forward as $-$Z$. The conventional front of oriented models is $+$Z$ instead. The two cannot be written interchangeably. PhysX 5.5's official API description [@web69cac7e876c8], by contrast, does not mandate meters or centimeters. It only requires that inputs remain consistent, and uses `PxTolerancesScale` to set typical length and speed. The same scale applies to the physics, cooking, and scene configuration. Conversion therefore cannot merely "swap two components" on the vertices. It should define a homogeneous transform from source to world:
 
 $$
 T_{W\leftarrow S}= \left[sRt 01\right],qquad p_W=T_{W\leftarrow S}p_S.
@@ -1340,13 +1340,13 @@ Materials likewise fall into two layers. A PBR material determines rendering par
 The smallest atom of large-world streaming is not a single texture but a spatial commit unit:
 
 **Text flow or pseudocode in the original manuscript**
-\begin{verbatim}
+```
 WorldCellBundle {
 cell_id, world_bounds, generation,
 render_chunks[], collider_chunks[], nav_tiles[],
 entity_state[], boundary_links[], dependency_hashes[]
 }
-\end{verbatim}
+```
 
 During loading, decode and validate each sub-resource in a staging area first. Then register the render/physics/nav objects, validate boundary links and generation, and commit visibility in one step. During unloading, block new queries from entering first, migrate or freeze dynamic objects, and remove cross-chunk links. Only then revoke the NavMesh, colliders and rendering resources. If the collider is unloaded before the NavMesh, an agent may plan a path through an area that has not yet been updated. If rendering is shown before physics is ready, the player will fall. If asynchronous rebaking mixes old tiles with new colliders, path results have no consistent snapshot.
 
