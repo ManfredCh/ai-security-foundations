@@ -4,7 +4,7 @@
 
 **安全工作的下一层：这些系统是怎么造出来的，而不是怎么被攻击。**
 
-<sub>2 篇背景综述 + 1 份教程目录 · 9.8 万汉字 · 202 页 PDF</sub>
+<sub>2 篇背景综述 + 1 份教程目录 · 9.8 万汉字 · 156 页 PDF</sub>
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)  ·  [![Status](https://img.shields.io/badge/Status-compiled_draft-orange)](#状态与边界)  ·  [![Language](https://img.shields.io/badge/Language-English_%7C_%E4%B8%AD%E6%96%87-blue)](#语言与版本)
 
@@ -17,6 +17,36 @@
 > — 《荀子·劝学》
 
 ---
+
+
+<!-- toc:start -->
+<details open>
+<summary><b>目录</b></summary>
+
+- [主题](#主题)
+- [概述](#概述)
+- [文件与格式](#文件与格式)
+- [入门教程](#入门教程)
+- [背景综述一 · 现代视觉生成模型](#背景综述一--现代视觉生成模型)
+- [背景综述二 · 三维空间建设](#背景综述二--三维空间建设)
+- [学习路径](#学习路径)
+- [语言与版本](#语言与版本)
+- [仓库结构](#仓库结构)
+- [更新日志](#更新日志)
+  - [v0.2.0 — 2026-09-26](#v020--2026-09-26)
+  - [v0.1.0 — 2026-09-26](#v010--2026-09-26)
+- [截止与后续纳入](#截止与后续纳入)
+  - [截止后发现并已登记的材料（检索于 2026-09-26）](#截止后发现并已登记的材料检索于-2026-09-26)
+- [状态与边界](#状态与边界)
+- [引用](#引用)
+- [参与贡献](#参与贡献)
+- [致谢](#致谢)
+- [星标趋势](#星标趋势)
+- [许可](#许可)
+- [相关仓库](#相关仓库)
+
+</details>
+<!-- toc:end -->
 
 ## 主题
 
@@ -31,7 +61,6 @@
 | **简体中文** | 本文件 | 两篇背景稿 + 教程目录，9.8 万汉字，202 页 PDF |
 | **English** | [README.md](README.md) | two background surveys + a tutorial outline, 86k words, 214 pages of PDF |
 
-[主题](#主题) · [概述](#概述) · [文件](#文件与格式) · [学习路径](#学习路径) · [引用](#引用) · [路线图](#截止与后续纳入) · [许可](#许可) · [贡献](#参与贡献)
 
 ## 概述
 
@@ -69,8 +98,8 @@
 
 | | |
 |---|---|
-| 中文 | [从图像到视频.md](release/zh/从图像到视频.md) · [99 页](release/zh/从图像到视频.pdf) |
-| English | [Visual-Generative-Models.md](release/en/Visual-Generative-Models.md) · [92 页](release/en/Visual-Generative-Models.pdf) |
+| 中文 | [从图像到视频.md](release/zh/从图像到视频.md) · [76 页](release/zh/从图像到视频.pdf) |
+| English | [Visual-Generative-Models.md](release/en/Visual-Generative-Models.md) · [94 页](release/en/Visual-Generative-Models.pdf) |
 | 篇幅 | 约 3 小时 · 21 章 |
 | 结构 | 证据方法 → 形式化 → 技术发展脉络 → 分类设计 → 显式概率与潜变量 → 对抗式隐式生成 → 自回归与 token → 得分去噪 → 潜扩散与 DiT → 确定性输运 → 混合机制 → 条件/控制/编辑 → 视频专属问题 → 数据与评测 → 工程与复现 → 安全版权与来源 → 产业生态 → 跨家族综合 → 未来议程 → 局限 |
 
@@ -86,8 +115,8 @@
 
 | | |
 |---|---|
-| 中文 | [从像素世界到可碰撞空间.md](release/zh/从像素世界到可碰撞空间.md) · [101 页](release/zh/从像素世界到可碰撞空间.pdf) |
-| English | [3D-Spatial-Construction.md](release/en/3D-Spatial-Construction.md) · [119 页](release/en/3D-Spatial-Construction.pdf) |
+| 中文 | [从像素世界到可碰撞空间.md](release/zh/从像素世界到可碰撞空间.md) · [78 页](release/zh/从像素世界到可碰撞空间.pdf) |
+| English | [3D-Spatial-Construction.md](release/en/3D-Spatial-Construction.md) · [120 页](release/en/3D-Spatial-Construction.pdf) |
 | 篇幅 | 约 4 小时 |
 | 结构 | 以 L0–L5 能力闭环为主线：视频生成与动作条件帧世界 → NeRF/神经渲染/3DGS → 相机、深度、点图与点云 → 显式表面、网格、程序化 DCC/CAD → 碰撞导航与游戏引擎；另有语料方法、跨家族综合、数据集评测、应用与局限 |
 

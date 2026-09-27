@@ -1,3 +1,27 @@
+
+
+<!-- toc:start -->
+## Contents
+
+- [3D Spatial Construction: Methods from Pixels to Collidable Spaces](#3d-spatial-construction-methods-from-pixels-to-collidable-spaces)
+  - [Abstract](#abstract)
+  - [Introduction](#introduction)
+  - [Corpus Selection and Coding Method](#corpus-selection-and-coding-method)
+  - [Background and the Input--Output Contract](#background-and-the-input--output-contract)
+  - [Classification Design and Coverage Audit](#classification-design-and-coverage-audit)
+  - [L0--L5 Method Families](#l0--l5-method-families)
+  - [Cross-Family Synthesis and Selection Guide](#cross-family-synthesis-and-selection-guide)
+  - [Datasets, Metrics, and Evaluation Evidence](#datasets-metrics-and-evaluation-evidence)
+  - [Applications and Deployment Mapping](#applications-and-deployment-mapping)
+  - [Attacks, Defenses, Future Trends, and Limitations](#attacks-defenses-future-trends-and-limitations)
+  - [Conclusion](#conclusion)
+  - [Open Materials and Migration Audit](#open-materials-and-migration-audit)
+- [Appendix — Post-cutoff update (2026-08-07 → 2026-09-26)](#appendix--post-cutoff-update-2026-08-07-→-2026-09-26)
+  - [A.1 — 3D spatial construction: no substantive progress on the agenda](#a1--3d-spatial-construction-no-substantive-progress-on-the-agenda)
+  - [A.2 — Related movement](#a2--related-movement)
+  - [A.3 — Cross-repository note: institutional consequence of the OpenAI–Hugging Face incident](#a3--cross-repository-note-institutional-consequence-of-the-openaihugging-face-incident)
+  - [A.4 — How to use this appendix](#a4--how-to-use-this-appendix)
+<!-- toc:end -->
 # 3D Spatial Construction: Methods from Pixels to Collidable Spaces
 
 ## Abstract
@@ -160,7 +184,7 @@ This main axis does not promise that categories are mutually exclusive. It promi
 
 The figures below come from structured data or from generation scripts of prior projects. The captions also give the readable scope. The main text does not use comparison tables to replace argumentation.
 
-![The 3D spatial construction capability ladder and method family classification. The figure encodes categories by verifiable outputs and query capabilities, not by model names. It is a graphical expression of this survey's primary classification axis.](figures/fig01_capability_taxonomy.png)
+![The 3D spatial construction capability ladder and method family classification. The figure encodes categories by verifiable outputs and query capabilities, not by model names. It is a graphical expression of this survey's primary classification axis.](../figures/fig01_capability_taxonomy.png)
 
 *The 3D spatial construction capability ladder and method family classification. The figure encodes categories by verifiable outputs and query capabilities, not by model names. It is a graphical expression of this survey's primary classification axis.*
 
@@ -1558,7 +1582,7 @@ This chapter therefore does not organize its discussion around per-paper field c
 
 The following figures are derived from the structured data or generation scripts of the earlier project, and the captions also give the readable range. The main text does not use comparison tables in place of argument.
 
-![Method evolution from measured geometry to persistent worlds. New representations change the unknowns and the locus of optimization, but they do not automatically eliminate the gaps in assetization, physical queries, and runtime state.](figures/fig03_method_evolution.png)
+![Method evolution from measured geometry to persistent worlds. New representations change the unknowns and the locus of optimization, but they do not automatically eliminate the gaps in assetization, physical queries, and runtime state.](../figures/fig03_method_evolution.png)
 
 *Method evolution from measured geometry to persistent worlds. New representations change the unknowns and the locus of optimization, but they do not automatically eliminate the gaps in assetization, physical queries, and runtime state.*
 
@@ -1683,23 +1707,23 @@ Evaluation must first separate visual, geometric, physical, navigation, resource
 
 The following figures come from the structured data or generation scripts of an earlier project. Their captions also state the readable scope. The main text does not use comparison tables as a substitute for argument.
 
-![Descriptive direction-unified PSNR improvement within the common table. Shared-study and configuration dependencies are recorded. The figure does not constitute a random-effects meta-analysis across independent studies.](figures/fig04_psnr_description.pdf)
+![Descriptive direction-unified PSNR improvement within the common table. Shared-study and configuration dependencies are recorded. The figure does not constitute a random-effects meta-analysis across independent studies.](../figures/fig04_psnr_description.png)
 
 *Descriptive direction-unified PSNR improvement within the common table. Shared-study and configuration dependencies are recorded. The figure does not constitute a random-effects meta-analysis across independent studies.*
 
-![Exploratory relationship between year and within-stratum quality percentile. The unit of analysis is the method configuration, and pairwise dependencies exist. The figure can only describe the composition of the current corpus. It cannot explain a causal trend.](figures/fig05_year_quality_correlation.pdf)
+![Exploratory relationship between year and within-stratum quality percentile. The unit of analysis is the method configuration, and pairwise dependencies exist. The figure can only describe the composition of the current corpus. It cannot explain a causal trend.](../figures/fig05_year_quality_correlation.png)
 
 *Exploratory relationship between year and within-stratum quality percentile. The unit of analysis is the method configuration, and pairwise dependencies exist. The figure can only describe the composition of the current corpus. It cannot explain a causal trend.*
 
-![Audit of missing quantitative fields. Gaps in variance, hardware, and protocol fields put direct limits on effect size computation, fair comparison, and extrapolation.](figures/fig06_missingness_audit.pdf)
+![Audit of missing quantitative fields. Gaps in variance, hardware, and protocol fields put direct limits on effect size computation, fair comparison, and extrapolation.](../figures/fig06_missingness_audit.png)
 
 *Audit of missing quantitative fields. Gaps in variance, hardware, and protocol fields put direct limits on effect size computation, fair comparison, and extrapolation.*
 
-![Surface approximation and collision proxy complexity in the local lightweight reproduction. This synthetic height-field experiment validates representation and query mechanisms only. It does not represent real scans, full rigid-body dynamics, or engine-hosted results.](figures/fig07_reproduction_tradeoff.png)
+![Surface approximation and collision proxy complexity in the local lightweight reproduction. This synthetic height-field experiment validates representation and query mechanisms only. It does not represent real scans, full rigid-body dynamics, or engine-hosted results.](../figures/fig07_reproduction_tradeoff.png)
 
 *Surface approximation and collision proxy complexity in the local lightweight reproduction. This synthetic height-field experiment validates representation and query mechanisms only. It does not represent real scans, full rigid-body dynamics, or engine-hosted results.*
 
-![Three candidate artifacts from the same synthetic height field. The organized mesh preserves the local surface but is not watertight. The voxel height field trades quantization bias for closure, and the AABB is the most conservative collision baseline. The visual, geometric, and collision uses of the three cannot be combined into a single ranking.](figures/fig08_reproduction_previews.png)
+![Three candidate artifacts from the same synthetic height field. The organized mesh preserves the local surface but is not watertight. The voxel height field trades quantization bias for closure, and the AABB is the most conservative collision baseline. The visual, geometric, and collision uses of the three cannot be combined into a single ranking.](../figures/fig08_reproduction_previews.png)
 
 *Three candidate artifacts from the same synthetic height field. The organized mesh preserves the local surface but is not watertight. The voxel height field trades quantization bias for closure, and the AABB is the most conservative collision baseline. The visual, geometric, and collision uses of the three cannot be combined into a single ranking.*
 
@@ -1839,7 +1863,7 @@ No single optimal pipeline applies to all inputs and applications. Selection sho
 
 These figures derive from the earlier project's structured data or generation scripts, and their captions also give the readable range. The main text does not use comparison tables as a substitute for argument.
 
-![Classification figure that back-infers the construction pipeline from the final query contract. The selection order fixes the query that needs to be answered first. Only then does it choose the representation, assetization, collision and navigation, and engine runtime layers.](figures/fig09_pipeline_selection.png)
+![Classification figure that back-infers the construction pipeline from the final query contract. The selection order fixes the query that needs to be answered first. Only then does it choose the representation, assetization, collision and navigation, and engine runtime layers.](../figures/fig09_pipeline_selection.png)
 
 *Classification figure that back-infers the construction pipeline from the final query contract. The selection order fixes the query that needs to be answered first. Only then does it choose the representation, assetization, collision and navigation, and engine runtime layers.*
 
@@ -1911,7 +1935,7 @@ The security problem is not isolated model robustness. It is whether errors can 
 
 The figures below come from structured data or generation scripts of prior projects. Their captions also give the readable scope. The main text does not use comparison tables to replace argumentation.
 
-![Attack propagation and defense-in-depth gates for 3D spatial assets. Arrows indicate that errors can propagate from the observation and coordinate layers to representation, geometric assets, collision navigation, and runtime; defenses must be accepted separately at the interfaces.](figures/fig02_attack_defense_layers.png)
+![Attack propagation and defense-in-depth gates for 3D spatial assets. Arrows indicate that errors can propagate from the observation and coordinate layers to representation, geometric assets, collision navigation, and runtime; defenses must be accepted separately at the interfaces.](../figures/fig02_attack_defense_layers.png)
 
 *Attack propagation and defense-in-depth gates for 3D spatial assets. Arrows indicate that errors can propagate from the observation and coordinate layers to representation, geometric assets, collision navigation, and runtime; defenses must be accepted separately at the interfaces.*
 

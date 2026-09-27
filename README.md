@@ -4,7 +4,7 @@
 
 **The layer under the security work: how these systems are built, not how they are attacked.**
 
-<sub>2 background surveys + 1 tutorial outline · 86,000 English words · 214 pages of PDF</sub>
+<sub>2 background surveys + 1 tutorial outline · 86,000 English words · 217 pages of PDF</sub>
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)  ·  [![Status](https://img.shields.io/badge/Status-compiled_draft-orange)](#status-and-limits)  ·  [![Language](https://img.shields.io/badge/Language-English_%7C_%E4%B8%AD%E6%96%87-blue)](#languages-and-editions)
 
@@ -17,6 +17,36 @@
 > — Isaac Newton, letter to Robert Hooke, 1675
 
 ---
+
+
+<!-- toc:start -->
+<details open>
+<summary><b>Contents</b></summary>
+
+- [The point](#the-point)
+- [Overview](#overview)
+- [Files and formats](#files-and-formats)
+- [The introductory tutorial](#the-introductory-tutorial)
+- [Background survey 1 · Modern Visual Generative Models](#background-survey-1--modern-visual-generative-models)
+- [Background survey 2 · 3D Spatial Construction](#background-survey-2--3d-spatial-construction)
+- [Reading paths](#reading-paths)
+- [Languages and editions](#languages-and-editions)
+- [Repository layout](#repository-layout)
+- [Changelog](#changelog)
+  - [v0.2.0 — 2026-09-26](#v020--2026-09-26)
+  - [v0.1.0 — 2026-09-26](#v010--2026-09-26)
+- [Cutoff and what comes next](#cutoff-and-what-comes-next)
+  - [Found since the cutoff and now recorded (searched 2026-09-26)](#found-since-the-cutoff-and-now-recorded-searched-2026-09-26)
+- [Status and limits](#status-and-limits)
+- [Citation](#citation)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [Star History](#star-history)
+- [License](#license)
+- [Related repositories](#related-repositories)
+
+</details>
+<!-- toc:end -->
 
 ## The point
 
@@ -33,7 +63,6 @@ and it deliberately contains **no attack or defence material**:
 | **English** | this file | two background surveys + a tutorial outline, 86k words, 214 pages of PDF |
 | **简体中文** | [README.zh.md](README.zh.md) | 两篇背景稿 + 教程目录，9.8 万汉字，202 页 PDF |
 
-[The point](#the-point) · [Overview](#overview) · [Files](#files-and-formats) · [Reading paths](#reading-paths) · [Citation](#citation) · [Roadmap](#cutoff-and-what-comes-next) · [License](#license) · [Contributing](#contributing)
 
 ## Overview
 
@@ -72,8 +101,8 @@ Each item ships as Markdown (read on Git) and PDF (download; figures inline).
 
 | | |
 |---|---|
-| 中文 | [从图像到视频.md](release/zh/从图像到视频.md) · [99 pp.](release/zh/从图像到视频.pdf) |
-| English | [Visual-Generative-Models.md](release/en/Visual-Generative-Models.md) · [92 pp.](release/en/Visual-Generative-Models.pdf) |
+| 中文 | [从图像到视频.md](release/zh/从图像到视频.md) · [76 pp.](release/zh/从图像到视频.pdf) |
+| English | [Visual-Generative-Models.md](release/en/Visual-Generative-Models.md) · [94 pp.](release/en/Visual-Generative-Models.pdf) |
 | Length | ~3 hours · 21 chapters |
 | Structure | evidence method → formalisation → technical lineage → taxonomy → explicit probabilistic and latent families → adversarial implicit generation → autoregressive and token generation → score-based denoising → latent diffusion and DiT → deterministic transport → hybrid mechanisms → conditioning, control, editing → video-specific problems → data and evaluation → engineering and reproduction → safety, copyright, provenance → industry ecosystem → synthesis → agenda → limitations |
 
@@ -89,8 +118,8 @@ Each item ships as Markdown (read on Git) and PDF (download; figures inline).
 
 | | |
 |---|---|
-| 中文 | [从像素世界到可碰撞空间.md](release/zh/从像素世界到可碰撞空间.md) · [101 pp.](release/zh/从像素世界到可碰撞空间.pdf) |
-| English | [3D-Spatial-Construction.md](release/en/3D-Spatial-Construction.md) · [119 pp.](release/en/3D-Spatial-Construction.pdf) |
+| 中文 | [从像素世界到可碰撞空间.md](release/zh/从像素世界到可碰撞空间.md) · [78 pp.](release/zh/从像素世界到可碰撞空间.pdf) |
+| English | [3D-Spatial-Construction.md](release/en/3D-Spatial-Construction.md) · [120 pp.](release/en/3D-Spatial-Construction.pdf) |
 | Length | ~4 hours |
 | Structure | the L0–L5 capability loop: video generation and action-conditioned frame worlds → NeRF, neural rendering and 3DGS → cameras, depth, point maps, point clouds → explicit surfaces, meshes, procedural DCC/CAD → collision navigation and game engines; plus corpus method, synthesis, datasets and evaluation, applications, and limitations |
 
